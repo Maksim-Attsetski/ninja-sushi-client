@@ -1,8 +1,11 @@
 <div>
-  <l-header></l-header>
+  <l-header [isOpen]="isOpen"></l-header>
   <main>
     <hr>
     <p>main text</p>
+    <div *ngFor="let product of products;">
+      {{ product.name }}
+    </div>
     <hr>
   </main>
   <l-footer></l-footer>

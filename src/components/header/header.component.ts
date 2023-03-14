@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'l-header', // prefix "l" mean that component is needed for "layout"
@@ -7,5 +7,8 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   title = 'header';
-  text = 'ffff';
+  currency = 'BYN';
+  count = 345;
+
+  @Input() isOpen: boolean = false;
 }
