@@ -1,5 +1,12 @@
 export type TProductType = 'sushi' | 'rolls' | 'set' | 'drinks';
 
+export const productTypes: { type: TProductType; text: string }[] = [
+  { type: 'sushi', text: 'Суши' },
+  { type: 'rolls', text: 'Роллы' },
+  { type: 'set', text: 'Сеты' },
+  { type: 'drinks', text: 'Напитки' },
+];
+
 export const enum IStrengths {
   острый = '🌶️',
   вегетарианское = '☘️',

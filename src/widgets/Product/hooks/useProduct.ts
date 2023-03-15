@@ -13,7 +13,7 @@ export const useProduct = () => {
     setProductsAC({ type, products: data });
   };
 
-  const getAllProducts = async (query?: IQuery) => {
+  const getAllProducts = async (query?: IQuery, limit: number = 8) => {
     const data = await productService.getAll(query || {});
 
     const productList = data.reduce((prev, cur) => {
@@ -24,7 +24,11 @@ export const useProduct = () => {
 
     for (const k in productList) {
       const key = k as TProductType;
-      setProductsAC({ type: key, products: productList[key] });
+      const items = productList[key];
+
+      if (items.length > limit) items.length = limit;
+
+      setProductsAC({ type: key, products: items });
     }
   };
 

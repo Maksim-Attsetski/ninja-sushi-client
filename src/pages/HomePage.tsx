@@ -1,6 +1,11 @@
 import React, { FC, useEffect } from 'react';
-import { List } from 'UI';
-import { useProduct, Product } from 'widgets/Product';
+import { Gap, List, Title } from 'UI';
+import {
+  useProduct,
+  Product,
+  ProductList,
+  productTypes,
+} from 'widgets/Product';
 
 const HomePage: FC = () => {
   const { getAllProducts, sushi } = useProduct();
@@ -14,14 +19,9 @@ const HomePage: FC = () => {
       <div>
         <div>home</div>
         <br />
-        <hr />
-        <br />
-
-        <List
-          data={sushi}
-          containerClassname='list'
-          renderItem={(item) => <Product product={item} />}
-        />
+        {productTypes.map((el) => (
+          <ProductList key={el.type} {...el} />
+        ))}
       </div>
     </div>
   );

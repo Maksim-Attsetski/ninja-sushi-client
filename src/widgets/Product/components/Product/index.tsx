@@ -1,5 +1,5 @@
 import { assets } from 'assets';
-import React, { FC, useMemo } from 'react';
+import React, { FC, memo, useMemo } from 'react';
 
 import { IProduct, IStrengths } from 'widgets/Product';
 
@@ -32,7 +32,7 @@ const Product: FC<IProps> = ({ product }) => {
       <div className={s.productImgBlock}>
         <img
           className={s.productImg}
-          src={product?.preview || assets.sushiDefault}
+          src={product?.preview || assets.noPhoto}
           alt=''
         />
         <div className={s.emoji}>{productStrengths}</div>
@@ -56,4 +56,4 @@ const Product: FC<IProps> = ({ product }) => {
     </div>
   );
 };
-export default Product;
+export default memo(Product);

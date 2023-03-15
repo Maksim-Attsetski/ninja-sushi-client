@@ -1,4 +1,4 @@
-
+@import 'shared/all.scss';
 
 .product {
   width: clamp(280px, 100%, 330px);
@@ -18,21 +18,21 @@
     font-weight: 700;
     font-size: 27px;
     line-height: 32px;
-    color: #1D1D1F;
+    color: $text;
   }
 
   &Weight {
     font-weight: 500;
-    font-size: 18px;
+    font-size: 16px;
     line-height: 26px;
     color: #FF6633;
-    margin-top: 12px;
-    margin-bottom: 8px;
+    margin-top: 8px;
+    margin-bottom: 6px;
   }
 
   &Consist {
-    color: #686870;
-    margin-bottom: 72px;
+    color: $subText;
+    @apply mb-16;
   }
 
   .infoBlock {
@@ -41,7 +41,7 @@
       font-weight: 700;
       font-size: 40px;
       line-height: 32px;
-      color: #1D1D1F;
+      color: $text;
     }
     &Currency {
       font-weight: 700;
