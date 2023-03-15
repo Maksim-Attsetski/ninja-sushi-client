@@ -5,16 +5,12 @@
   @apply fixed left-0 z-50 px-1 transition-all;
   top: $headerHeight;
   height: calc(100% - $headerHeight - $footerHeight);
-  width: $siderMinWidth;
-  min-width: $siderMinWidth;
 
   @include for-tablet {
     @apply hidden;
   }
 
   &.active {
-    width: $siderMaxWidth;
-    min-width: $siderMaxWidth;
 
     .siderIcon {
       @apply ml-auto mr-5;
