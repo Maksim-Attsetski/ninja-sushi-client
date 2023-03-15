@@ -1,0 +1,67 @@
+
+
+.product {
+  width: clamp(280px, 100%, 330px);
+  @apply bg-white p-6 rounded-xl;
+
+  &ImgBlock {
+    @apply relative;
+    .emoji {
+      @apply absolute bottom-1 left-0;
+    }
+  }
+  &Img {
+    @apply w-11/12 h-full mx-auto;
+  }
+
+  &Title {
+    font-weight: 700;
+    font-size: 27px;
+    line-height: 32px;
+    color: #1D1D1F;
+  }
+
+  &Weight {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 26px;
+    color: #FF6633;
+    margin-top: 12px;
+    margin-bottom: 8px;
+  }
+
+  &Consist {
+    color: #686870;
+    margin-bottom: 72px;
+  }
+
+  .infoBlock {
+    @apply flex justify-between items-center;
+    &Price {
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 32px;
+      color: #1D1D1F;
+    }
+    &Currency {
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 16px;
+      color: #575758;
+      margin-left: 10px;
+    }
+    &Buttons {
+      @apply flex items-center justify-center gap-x-2;
+    }
+    &Like {
+      background: #F5F5F7;
+      border-radius: 12px;
+      padding: 8px 12px;
+    }
+    &Add {
+      background: #CCF5D5;
+      border-radius: 12px;
+      padding: 8px 20px;
+    }
+  }
+}

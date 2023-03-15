@@ -9,6 +9,7 @@ const initialState: IState = {
   sushi: [],
   rolls: [],
   set: [],
+  drinks: [],
 };
 
 type TSetProducts = { type: TProductType; products: IProduct[] };

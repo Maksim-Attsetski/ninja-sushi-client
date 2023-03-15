@@ -8,20 +8,6 @@
   box-sizing: border-box;
 }
 
-.ant-btn-primary {
-  background-color: #1677ff;
-  color: white;
-}
-:where(.css-dev-only-do-not-override-k83k30).ant-collapse
-  .ant-collapse-content
-  > .ant-collapse-content-box {
-  padding: 8px;
-}
-
-span[role="img"] {
-  vertical-align: 1px;
-}
-
 :focus {
   outline: none;
 }
@@ -31,6 +17,10 @@ span[role="img"] {
   margin: 0 auto;
 }
 
-.ant-image-mask {
-  @apply rounded-xl;
+body {
+  background: #F5F5F7;
+}
+
+.list {
+  @apply flex justify-between items-center gap-2;
 }

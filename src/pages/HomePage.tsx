@@ -10,12 +10,19 @@ const HomePage: FC = () => {
   }, []);
 
   return (
-    <div>
-      <div>home</div>
-      <br />
-      <hr />
-      <br />
-      <List data={sushi} renderItem={(item) => <Product product={item} />} />
+    <div className='container'>
+      <div>
+        <div>home</div>
+        <br />
+        <hr />
+        <br />
+
+        <List
+          data={sushi}
+          containerClassname='list'
+          renderItem={(item) => <Product product={item} />}
+        />
+      </div>
     </div>
   );
 };

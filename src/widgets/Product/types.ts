@@ -1,4 +1,10 @@
-export type TProductType = 'sushi' | 'rolls' | 'set';
+export type TProductType = 'sushi' | 'rolls' | 'set' | 'drinks';
+
+export const enum IStrengths {
+  острый = '🌶️',
+  вегетарианское = '☘️',
+  'без глютена' = '🥛',
+}
 
 export interface IIngredient {
   _id: string;
@@ -13,7 +19,7 @@ export interface IProduct<I = IIngredient> {
   article: string;
   description: string;
   preview: string;
-  strengths: string[];
+  strengths: (keyof IStrengths)[];
   consist: I[];
   weight: number;
   price: number;
