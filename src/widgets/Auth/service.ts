@@ -1,4 +1,5 @@
-import { $api, tokenName } from 'shared';
+import axios from 'axios';
+import { $api, baseURL, getError, Logger, tokenName } from 'shared';
 import { ILogin, ISignup, IUser } from 'widgets/User';
 
 export interface IResponse {
@@ -14,31 +15,65 @@ class AuthService {
   }
 
   async signup(signupDto: ISignup) {
-    const response = await $api.post<IResponse>('auth/signup', signupDto);
+    try {
+      const response = await $api.post<IResponse>('auth/signup', signupDto);
 
-    this.setToken(response.data);
-    return response.data.user;
+      this.setToken(response.data);
+
+      Logger.log('Success API signup request', response.data);
+      return response.data.user;
+    } catch (error) {
+      const err = getError(error);
+      Logger.error(err?.message);
+      throw err;
+    }
   }
 
   async login(loginDto: ILogin) {
-    const response = await $api.post<IResponse>('auth/login', loginDto);
+    try {
+      const response = await $api.post<IResponse>('auth/login', loginDto);
 
-    this.setToken(response.data);
-    return response.data.user;
+      this.setToken(response.data);
+
+      Logger.log('Success API login request', response.data);
+      return response.data.user;
+    } catch (error) {
+      const err = getError(error);
+      Logger.error(err?.message);
+      throw err;
+    }
   }
 
   async logout() {
-    const response = await $api.get<boolean>('auth/logout');
+    try {
+      const response = await $api.get<boolean>('auth/logout');
 
-    this.setToken(null);
-    return response.data;
+      this.setToken(null);
+
+      Logger.log('Success API logout request');
+      return response.data;
+    } catch (error) {
+      const err = getError(error);
+      Logger.error(err?.message);
+      throw err;
+    }
   }
 
   async refresh() {
-    const response = await $api.get<IResponse>('auth/refresh');
+    try {
+      const response = await axios.get<IResponse>('auth/refresh', {
+        baseURL,
+        withCredentials: true,
+      });
+      this.setToken(response.data);
 
-    this.setToken(response.data);
-    return response.data.user;
+      Logger.log('Success API refresh request', response.data);
+      return response.data.user;
+    } catch (error) {
+      const err = getError(error);
+      Logger.error(err?.message);
+      throw err;
+    }
   }
 }
 

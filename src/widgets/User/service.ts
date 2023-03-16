@@ -1,4 +1,4 @@
-import { $api, IQuery } from 'shared';
+import { $api, getError, IQuery, Logger } from 'shared';
 import { IUser } from './types';
 
 const enum routes {
@@ -13,8 +13,9 @@ class UserService {
 
       return response.data;
     } catch (error) {
-      console.log(error);
-      throw error;
+      const err = getError(error);
+      Logger.error(err?.message);
+      throw err;
     }
   }
 }

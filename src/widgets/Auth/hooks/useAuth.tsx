@@ -1,4 +1,5 @@
 import { useActions, useTypedSelector } from 'hooks';
+import { getError, Logger } from 'shared';
 import { ISignup } from 'widgets/User';
 import { authService } from '..';
 
@@ -11,7 +12,6 @@ const useAuth = () => {
       const data = await authService.login(signupDto);
       action.setAuth(data);
     } catch (error) {
-      console.log(error);
       throw error;
     }
   };
@@ -21,27 +21,24 @@ const useAuth = () => {
       const data = await authService.login(signupDto);
       action.setAuth(data);
     } catch (error) {
-      console.log(error);
       throw error;
     }
   };
 
-  const onLogout = async (signupDto: ISignup) => {
+  const onLogout = async () => {
     try {
-      const isSuccess = await authService.login(signupDto);
+      const isSuccess = await authService.logout();
       isSuccess && action.setAuth(null);
     } catch (error) {
-      console.log(error);
       throw error;
     }
   };
 
-  const onRefresh = async (signupDto: ISignup) => {
+  const onRefresh = async () => {
     try {
-      const data = await authService.login(signupDto);
+      const data = await authService.refresh();
       action.setAuth(data);
     } catch (error) {
-      console.log(error);
       throw error;
     }
   };
