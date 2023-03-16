@@ -5,5 +5,17 @@ import Gap from './Gap';
 import List from './List';
 import Title from './Title';
 import AudioToTextConverter from './AudioToTextConverter';
+import Input from './Input';
+import Button from './Button';
 
-export { AudioToTextConverter, Title, Sider, Loader, SubTitle, Gap, List };
+export {
+  Input,
+  AudioToTextConverter,
+  Title,
+  Sider,
+  Loader,
+  SubTitle,
+  Gap,
+  List,
+  Button,
+};
