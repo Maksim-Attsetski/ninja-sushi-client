@@ -1,10 +1,10 @@
+type TUserProviders = 'pass' | 'google';
 
-interface ILogin {
+export interface ILogin {
   email: string;
   password: string;
 }
-
-interface ISignup extends ILogin {
+export interface ISignup extends ILogin {
   name: string;
 }
 
@@ -14,5 +14,5 @@ export interface IUser<T> extends ISignup {
   location: { latitude: number; longitude: number };
   favorite_sushi_ids: T[];
   phone: string;
-  order: T[];
+  providers: TUserProviders[];
 }
