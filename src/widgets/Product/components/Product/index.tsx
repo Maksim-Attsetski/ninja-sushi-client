@@ -64,12 +64,7 @@ const Product: FC<IProps> = ({ product }) => {
           <div className={s.infoBlockButtons}>
             <Button
               onClick={onClickLike}
-              text={
-                <assets.LikeSvg
-                  stroke={inLiked ? 'red' : '#333'}
-                  fill={inLiked ? 'red' : 'none'}
-                />
-              }
+              text={<assets.LikeSvg isLiked={inLiked} />}
               auth
               className={s.infoBlockLike}
             />
