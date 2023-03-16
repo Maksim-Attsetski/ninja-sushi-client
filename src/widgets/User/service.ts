@@ -1,5 +1,5 @@
 import { $api, getError, IQuery, Logger } from 'shared';
-import { IUser } from './types';
+import { IUser, TUserWithGeneric } from './types';
 
 const enum routes {
   users = 'users',
@@ -10,6 +10,18 @@ class UserService {
   async getAll(params: IQuery) {
     try {
       const response = await $api.get(routes.users, { params });
+
+      return response.data;
+    } catch (error) {
+      const err = getError(error);
+      Logger.error(err?.message);
+      throw err;
+    }
+  }
+
+  async editUser(userId: string, user: TUserWithGeneric) {
+    try {
+      const response = await $api.patch(routes.user + userId, user);
 
       return response.data;
     } catch (error) {

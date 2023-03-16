@@ -20,7 +20,9 @@ const Navigation: FC = () => {
   return (
     <>
       <Routes>
-        <Route element={<screens.Home />} path={routeNames.Home} />
+        <Route path='/' element={<Layout />}>
+          <Route element={<screens.Home />} path={routeNames.Home} />
+        </Route>
         {isAuth ? (
           <Route path='/' element={<Layout />}>
             <Route element={<screens.Notfound />} path={routeNames.Notfound} />

@@ -6,9 +6,12 @@ import useAuth from '../../hooks/useAuth';
 
 import s from './AuthForm.module.scss';
 import { ILogin, ISignup } from 'widgets/User';
+import { useNavigate } from 'react-router-dom';
+import { routeNames } from 'navigation/types';
 
 const AuthForm: FC = () => {
   const { onLogin, onSignup } = useAuth();
+  const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useState<boolean>(false);
   const name = useInput('', 'Имя и Фамилия');
@@ -23,17 +26,18 @@ const AuthForm: FC = () => {
       password: password.props.value,
     };
 
-    if (!isLogin) {
+    if (isLogin) {
+      await onLogin(loginDto);
+    } else {
       const signupdto: ISignup = {
         ...loginDto,
         name: name.props.value,
       };
 
       await onSignup(signupdto);
-      return;
     }
 
-    await onLogin(loginDto);
+    navigate(routeNames.Home);
   };
 
   return (

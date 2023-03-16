@@ -2,5 +2,6 @@
 import sushiDefault from './img/sushi.png';
 import noPhoto from './img/no-photo.jpg';
 // svg
+import LikeSvg from './svg/LikeSvg';
 
-export const assets = { siderIcon: '', sushiDefault, noPhoto };
+export const assets = { siderIcon: '', sushiDefault, noPhoto, LikeSvg };

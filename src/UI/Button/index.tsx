@@ -7,6 +7,8 @@ import React, {
   memo,
   MouseEvent,
   MouseEventHandler,
+  ReactElement,
+  ReactNode,
 } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +19,7 @@ interface IProps
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
   > {
-  text: string;
+  text: string | ReactElement | ReactNode;
   auth?: boolean;
   isSecondary?: boolean;
 }

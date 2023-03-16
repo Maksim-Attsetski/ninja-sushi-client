@@ -1,6 +1,7 @@
 class Logger {
   log(msg: string, data?: any) {
-    console.log('%c' + msg, data, 'color: green');
+    console.log('%c' + msg, 'color: green');
+    console.log(data);
   }
 
   error(msg: string) {

@@ -1,13 +1,15 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import { appReducer } from 'widgets/App';
+import { userReducer } from 'widgets/User';
 import { authReducer } from 'widgets/Auth';
 import { productReducer } from 'widgets/Product';
 
 const rootReducer = combineReducers({
-  app: appReducer,
+  user: userReducer,
   product: productReducer,
   auth: authReducer,
+  app: appReducer,
 });
 
 export const store = configureStore({

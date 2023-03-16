@@ -1,8 +1,9 @@
-import { assets } from 'assets';
 import React, { FC, memo, useMemo } from 'react';
+import { assets } from 'assets';
 import { Button } from 'UI';
 
 import { IProduct, IStrengths } from 'widgets/Product';
+import { useUsers } from 'widgets/User';
 
 import s from './Product.module.scss';
 
@@ -11,6 +12,7 @@ interface IProps {
 }
 
 const Product: FC<IProps> = ({ product }) => {
+  const { user, onLikeProduct, getIds } = useUsers();
   const productWeightType = useMemo(
     () => (product.type === 'drinks' ? 'мл' : 'г'),
     [product.type]
@@ -28,12 +30,21 @@ const Product: FC<IProps> = ({ product }) => {
     [product.consist]
   );
 
+  const inLiked = useMemo(
+    () => getIds()?.includes(product._id),
+    [product._id, user?.favorite_products_ids?.length]
+  );
+
+  const onClickLike = async () => {
+    await onLikeProduct(product._id);
+  };
+
   return (
     <div className={s.product}>
       <div className={s.productImgBlock}>
         <img
           className={s.productImg}
-          src={product?.preview || assets.sushiDefault}
+          src={product?.preview || assets.noPhoto}
           alt=''
         />
         <div className={s.emoji}>{productStrengths}</div>
@@ -51,7 +62,17 @@ const Product: FC<IProps> = ({ product }) => {
             <span className={s.infoBlockCurrency}>byn</span>
           </div>
           <div className={s.infoBlockButtons}>
-            <Button text='❤️' auth className={s.infoBlockLike} />
+            <Button
+              onClick={onClickLike}
+              text={
+                <assets.LikeSvg
+                  stroke={inLiked ? 'red' : '#333'}
+                  fill={inLiked ? 'red' : 'none'}
+                />
+              }
+              auth
+              className={s.infoBlockLike}
+            />
             <Button text='➕' auth className={s.infoBlockAdd} />
           </div>
         </div>
