@@ -4,5 +4,6 @@ import SubTitle from './SubTitle';
 import Gap from './Gap';
 import List from './List';
 import Title from './Title';
+import AudioToTextConverter from './AudioToTextConverter';
 
-export { Title, Sider, Loader, SubTitle, Gap, List };
+export { AudioToTextConverter, Title, Sider, Loader, SubTitle, Gap, List };
