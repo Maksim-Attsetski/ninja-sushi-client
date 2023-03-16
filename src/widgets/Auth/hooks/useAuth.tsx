@@ -1,6 +1,6 @@
 import { useActions, useTypedSelector } from 'hooks';
 import { getError, Logger } from 'shared';
-import { ISignup } from 'widgets/User';
+import { ILogin, ISignup } from 'widgets/User';
 import { authService } from '..';
 
 const useAuth = () => {
@@ -16,9 +16,9 @@ const useAuth = () => {
     }
   };
 
-  const onLogin = async (signupDto: ISignup) => {
+  const onLogin = async (loginDto: ILogin) => {
     try {
-      const data = await authService.login(signupDto);
+      const data = await authService.login(loginDto);
       action.setAuth(data);
     } catch (error) {
       throw error;

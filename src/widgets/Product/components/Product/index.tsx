@@ -1,5 +1,6 @@
 import { assets } from 'assets';
 import React, { FC, memo, useMemo } from 'react';
+import { Button } from 'UI';
 
 import { IProduct, IStrengths } from 'widgets/Product';
 
@@ -50,8 +51,8 @@ const Product: FC<IProps> = ({ product }) => {
             <span className={s.infoBlockCurrency}>byn</span>
           </div>
           <div className={s.infoBlockButtons}>
-            <button className={s.infoBlockLike}>❤️</button>
-            <button className={s.infoBlockAdd}>➕</button>
+            <Button text='❤️' auth className={s.infoBlockLike} />
+            <Button text='➕' auth className={s.infoBlockAdd} />
           </div>
         </div>
       </div>

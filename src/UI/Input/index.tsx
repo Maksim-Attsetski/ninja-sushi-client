@@ -12,11 +12,13 @@ interface IProps
 
 const Input: FC<IProps> = ({ className, colorType = 'main', ...props }) => {
   return (
-    <input
-      {...props}
-      style={{ backgroundColor: colorType === 'main' ? '#F5F5F7' : '#fff' }}
-      className={[s.input, className].join(' ')}
-    />
+    <div className={s.container}>
+      <input
+        {...props}
+        style={{ backgroundColor: colorType === 'main' ? '#F5F5F7' : '#fff' }}
+        className={[s.input, className].join(' ')}
+      />
+    </div>
   );
 };
 export default memo(Input);

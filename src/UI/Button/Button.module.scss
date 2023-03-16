@@ -1,12 +1,10 @@
 @import 'shared/all.scss';
 
 .button {
-  padding: 16px 24px;
-  background: $accent;
-  border-radius: 12px;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 24px;
-  text-align: center;
-  color: #FFFFFF;
+  background-color: $accent;
+  @apply transition-all text-white text-center font-medium py-4 px-6 text-base rounded-xl;
+
+  &:active {
+    transform: translateY(2px);
+  }
 }

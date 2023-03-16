@@ -1,3 +1,4 @@
+import { useTypedSelector } from 'hooks';
 import { routeNames } from 'navigation/types';
 import React, {
   ButtonHTMLAttributes,
@@ -18,25 +19,31 @@ interface IProps
   > {
   text: string;
   auth?: boolean;
+  isSecondary?: boolean;
 }
 const Button: FC<IProps> = ({
   text,
   auth = false,
+  isSecondary = '',
   onClick,
   className,
   ...props
 }) => {
   const navigate = useNavigate();
+  const { isAuth } = useTypedSelector((state) => state.auth);
 
   const onButtonClick: MouseEventHandler<HTMLButtonElement> = (event) => {
-    if (onClick) {
-      auth ? navigate(routeNames.Auth) : onClick(event);
+    if (auth && !isAuth) {
+      navigate(routeNames.Auth);
+      return;
     }
+    onClick && onClick(event);
   };
+
   return (
     <button
       {...props}
-      className={[s.button, className].join(' ')}
+      className={[s.button, isSecondary && s.secondary, className].join(' ')}
       onClick={onButtonClick}
     >
       {text}
