@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import React, { FC } from 'react';
+import React, { FC, memo } from 'react';
 
 interface IProps {
   size?: number;
@@ -45,4 +45,4 @@ const LikeSvg: FC<IProps> = ({
     </motion.svg>
   );
 };
-export default LikeSvg;
+export default memo(LikeSvg);

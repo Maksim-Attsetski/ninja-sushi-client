@@ -6,6 +6,7 @@ import { IProduct, IStrengths } from 'widgets/Product';
 import { useUsers } from 'widgets/User';
 
 import s from './Product.module.scss';
+import ProductOrderBtn from '../ProductOrderBtn';
 
 interface IProps {
   product: IProduct;
@@ -68,7 +69,7 @@ const Product: FC<IProps> = ({ product }) => {
               auth
               className={s.infoBlockLike}
             />
-            <Button text='➕' auth className={s.infoBlockAdd} />
+            <ProductOrderBtn productId={product._id} />
           </div>
         </div>
       </div>
