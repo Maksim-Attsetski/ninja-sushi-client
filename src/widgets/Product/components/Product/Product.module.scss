@@ -1,8 +1,14 @@
 @import 'shared/all.scss';
 
 .product {
-  width: clamp(280px, 100%, 330px);
   @apply bg-white p-6 rounded-xl;
+  @include for-tablet {
+    @apply flex;
+  }
+
+  @include for-phone {
+    @apply flex-col;
+  }
 
   &ImgBlock {
     @apply relative;
@@ -11,7 +17,10 @@
     }
   }
   &Img {
-    @apply w-11/12 h-full mx-auto;
+    @apply w-11/12 mx-auto;
+    @include for-tablet {
+      @apply my-auto w-full;
+    }  
   }
 
   &Title {
@@ -33,20 +42,30 @@
   &Consist {
     color: $subText;
     @apply mb-16;
+    @include for-tablet {
+      @apply mb-0;
+    }  
   }
 
   .infoBlock {
     @apply flex justify-between items-center;
+    @include for-tablet {
+      margin-top: auto;
+    }
+
+    $priceSize: calc(16px + 3vmin);
+    $currencySize: calc($priceSize / 2);
+
     &Price {
       font-weight: 700;
-      font-size: 40px;
-      line-height: 32px;
+      font-size: $priceSize;
+      line-height: calc($priceSize - 8px);
       color: $text;
     }
     &Currency {
       font-weight: 700;
-      font-size: 20px;
-      line-height: 16px;
+      font-size: $currencySize;
+      line-height: calc($currencySize - 4px);
       color: #575758;
       margin-left: 10px;
     }

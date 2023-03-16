@@ -22,6 +22,7 @@ const ProductList: FC<IProps> = ({ type, text }) => {
       <List
         data={products[type]}
         containerClassname={s.list}
+        itemClassname={s.item}
         renderItem={(item) => <Product product={item} />}
       />
       <Gap y={15} />

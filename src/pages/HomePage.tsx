@@ -1,14 +1,9 @@
 import React, { FC, useEffect } from 'react';
-import { AudioToTextConverter, Gap, List, Title } from 'UI';
-import {
-  useProduct,
-  Product,
-  ProductList,
-  productTypes,
-} from 'widgets/Product';
+
+import { useProduct, ProductList, productTypes } from 'widgets/Product';
 
 const HomePage: FC = () => {
-  const { getAllProducts, sushi } = useProduct();
+  const { getAllProducts } = useProduct();
 
   useEffect(() => {
     getAllProducts({ dependencies: true });

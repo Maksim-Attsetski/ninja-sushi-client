@@ -32,25 +32,27 @@ const Product: FC<IProps> = ({ product }) => {
       <div className={s.productImgBlock}>
         <img
           className={s.productImg}
-          src={product?.preview || assets.noPhoto}
+          src={product?.preview || assets.sushiDefault}
           alt=''
         />
         <div className={s.emoji}>{productStrengths}</div>
       </div>
-      <div className={s.productTitle}>{product.name}</div>
-      <div className={s.productWeight}>
-        Вес: {product.weight} {productWeightType}
-      </div>
-      <div className={s.productConsist}>{productIngredients}</div>
-      <br />
-      <div className={s.infoBlock}>
-        <div>
-          <span className={s.infoBlockPrice}>{product.price}</span>
-          <span className={s.infoBlockCurrency}>byn</span>
+      <div>
+        <div className={s.productTitle}>{product.name}</div>
+        <div className={s.productWeight}>
+          Вес: {product.weight} {productWeightType}
         </div>
-        <div className={s.infoBlockButtons}>
-          <button className={s.infoBlockLike}>❤️</button>
-          <button className={s.infoBlockAdd}>➕</button>
+        <div className={s.productConsist}>{productIngredients}</div>
+        <br />
+        <div className={s.infoBlock}>
+          <div>
+            <span className={s.infoBlockPrice}>{product.price}</span>
+            <span className={s.infoBlockCurrency}>byn</span>
+          </div>
+          <div className={s.infoBlockButtons}>
+            <button className={s.infoBlockLike}>❤️</button>
+            <button className={s.infoBlockAdd}>➕</button>
+          </div>
         </div>
       </div>
     </div>
