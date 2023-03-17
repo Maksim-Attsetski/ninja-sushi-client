@@ -1,5 +1,6 @@
 import { useActions, useTypedSelector } from 'hooks';
 import { getError, Logger } from 'shared';
+import { useOrder } from 'widgets/Order';
 import { IIngredient } from 'widgets/Product';
 import { ILogin, ISignup, IUser } from 'widgets/User';
 import { authService } from '..';
@@ -7,6 +8,7 @@ import { authService } from '..';
 const useAuth = () => {
   const { isAuth } = useTypedSelector((state) => state.auth);
   const { action } = useActions();
+  const { onGetOrderList } = useOrder();
 
   const setAuth = (data: IUser<string | IIngredient> | boolean) => {
     action.setUserAC(typeof data === 'boolean' ? null : data);
@@ -43,6 +45,13 @@ const useAuth = () => {
   const onRefresh = async () => {
     try {
       const data = await authService.refresh();
+
+      if (data?._id) {
+        await onGetOrderList({
+          filter: `authorId==${data?._id};status==not paid`,
+        });
+      }
+
       setAuth(data);
     } catch (error) {
       throw error;

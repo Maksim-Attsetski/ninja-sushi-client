@@ -8,6 +8,7 @@ import s from './style.module.scss';
 import { assets } from 'assets';
 import { useAuth } from 'widgets/Auth';
 import { Button } from 'UI';
+import { useOrder } from 'widgets/Order';
 
 interface IProps {
   setIsOpen: (val: boolean) => void;
@@ -17,8 +18,13 @@ interface IProps {
 const _Header: FC<IProps> = ({ setIsOpen, isOpen }) => {
   const navigate = useNavigate();
   const { isAuth } = useAuth();
+  const { orders } = useOrder();
 
   const onBurgerClick = async () => {};
+
+  const onOpen = (to: routeNames) => {
+    navigate(to);
+  };
 
   const routeLinks = useMemo(
     () => [
@@ -28,6 +34,19 @@ const _Header: FC<IProps> = ({ setIsOpen, isOpen }) => {
       { to: routeNames.News, text: 'Новости' },
     ],
     []
+  );
+
+  const orderCount = useMemo(
+    () =>
+      orders.reduce((prev, cur) => {
+        const count = cur.products.reduce(
+          (last, current) => (last += current.count),
+          0
+        );
+
+        return count + prev;
+      }, 0),
+    [orders]
   );
 
   return (
@@ -45,10 +64,26 @@ const _Header: FC<IProps> = ({ setIsOpen, isOpen }) => {
             ))}
           </div>
           <div className={s.buttonsContainer}>
-            <Button text='🔕' colorType='white' />
-            <Button text='❤️' colorType='white' />
-            <Button text='👤' colorType='white' />
-            <Button text='Корзина' colorType='secondary' />
+            <Button
+              onClick={() => onOpen(routeNames.About)}
+              text='🔕'
+              colorType='white'
+            />
+            <Button
+              onClick={() => onOpen(routeNames.Liked)}
+              text='❤️'
+              colorType='white'
+            />
+            <Button
+              onClick={() => onOpen(routeNames.Profile)}
+              text='👤'
+              colorType='white'
+            />
+            <Button
+              onClick={() => onOpen(routeNames.Order)}
+              text={'Корзина ' + orderCount}
+              colorType='secondary'
+            />
           </div>
         </div>
       </div>

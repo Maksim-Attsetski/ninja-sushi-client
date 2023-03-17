@@ -26,10 +26,8 @@ const userSlice = createSlice({
           : order
       );
     },
-    deleteOrderAC: (state: IState, action: PayloadAction<IOrder>) => {
-      state.orders = state.orders.filter(
-        (el: IOrder) => el._id !== action.payload._id
-      );
+    deleteOrderAC: (state: IState, action: PayloadAction<string>) => {
+      state.orders = state.orders.filter((el) => el._id !== action.payload);
     },
   },
 });

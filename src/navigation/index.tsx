@@ -5,16 +5,13 @@ import { screens } from 'pages';
 import { routeNames } from './types';
 import { Layout } from 'widgets/Layout';
 import { useAuth } from 'widgets/Auth';
+import { useOrder } from 'widgets/Order';
 
 const Navigation: FC = () => {
   const { isAuth, onRefresh } = useAuth();
 
-  const getAll = async (): Promise<void> => {
-    Promise.all([onRefresh()]);
-  };
-
   useEffect(() => {
-    getAll();
+    onRefresh();
   }, []);
 
   return (
