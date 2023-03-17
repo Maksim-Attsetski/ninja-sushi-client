@@ -21,12 +21,12 @@ interface IProps
   > {
   text: string | ReactElement | ReactNode;
   auth?: boolean;
-  isSecondary?: boolean;
+  colorType?: 'white' | 'secondary';
 }
 const Button: FC<IProps> = ({
   text,
   auth = false,
-  isSecondary = '',
+  colorType = '',
   onClick,
   className,
   ...props
@@ -45,7 +45,7 @@ const Button: FC<IProps> = ({
   return (
     <button
       {...props}
-      className={[s.button, isSecondary && s.secondary, className].join(' ')}
+      className={[s.button, s[colorType], className].join(' ')}
       onClick={onButtonClick}
     >
       {text}

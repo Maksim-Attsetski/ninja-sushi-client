@@ -5,4 +5,10 @@ export enum routeNames {
   // auth
   Auth = '/auth',
   // public
+  News = '/news',
+  Delivery = '/delivery',
+  About = '/about',
+  Liked = '/liked',
+  Profile = '/profile',
+  Order = '/order',
 }

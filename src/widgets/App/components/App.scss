@@ -2,6 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'shared/all.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -21,3 +23,11 @@ body {
   background: #F5F5F7;
 }
 
+a {
+  text-decoration: none;
+  @apply text-inherit transition-all;
+
+  &.active {
+    color: $secondary;
+  }
+}
