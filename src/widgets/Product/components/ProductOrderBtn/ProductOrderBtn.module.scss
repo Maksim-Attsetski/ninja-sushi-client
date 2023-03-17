@@ -1,6 +1,8 @@
 
-.button {
-  background: #CCF5D5;
-  border-radius: 12px;
-  padding: 8px 20px;
+.container {
+  @apply flex scale-90;
+}
+
+.count {
+  @apply my-auto mx-3 text-xl font-medium;
 }

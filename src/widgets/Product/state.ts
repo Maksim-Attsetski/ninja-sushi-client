@@ -16,6 +16,13 @@ const productSlice = createSlice({
     setProductsAC: (state: IState, action: PayloadAction<IProduct[]>) => {
       state.products = action.payload;
     },
+    editProductsAC: (state: IState, action: PayloadAction<IProduct>) => {
+      state.products = state.products.map((product) =>
+        product._id === action.payload._id
+          ? { ...product, ...action.payload }
+          : product
+      );
+    },
   },
 });
 

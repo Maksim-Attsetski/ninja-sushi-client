@@ -19,9 +19,9 @@ const useOrder = () => {
   };
 
   const onEditOrder = async (_id: string, order: IOrder) => {
-    const response = await OrderService.edit(_id, order);
+    await OrderService.edit(_id, order);
 
-    action.editOrderAC(response);
+    action.editOrderAC({ ...order, _id });
   };
 
   const onDeleteOrder = async (_id: string) => {

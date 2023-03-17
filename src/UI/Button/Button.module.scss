@@ -8,6 +8,10 @@
     transform: translateY(2px);
   }
   
+  &.small {
+    @apply py-2 px-4;
+  }
+  
   &.white {
     @apply py-2 px-4 bg-white;
     color: #333;

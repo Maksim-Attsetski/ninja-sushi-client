@@ -6,7 +6,7 @@
     @apply flex;
   }
 
-  @include for-phone {
+  @include for-bigPhone {
     @apply flex-col;
   }
 
@@ -48,7 +48,7 @@
   }
 
   .infoBlock {
-    @apply flex justify-between items-center;
+    @apply flex flex-wrap gap-y-3 justify-between items-center;
     @include for-tablet {
       margin-top: auto;
     }

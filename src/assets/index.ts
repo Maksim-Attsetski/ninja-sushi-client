@@ -5,6 +5,7 @@ import logo from './img/logo.png';
 // svg
 import LikeSvg from './svg/LikeSvg';
 import PlusSvg from './svg/PlusSvg';
+import MinusSvg from './svg/MinusSvg';
 
 export const assets = {
   siderIcon: '',
@@ -12,5 +13,6 @@ export const assets = {
   sushiDefault,
   noPhoto,
   LikeSvg,
+  MinusSvg,
   PlusSvg,
 };

@@ -70,7 +70,7 @@ const Product: FC<IProps> = ({ product }) => {
               auth
               className={s.infoBlockLike}
             />
-            <ProductOrderBtn productId={product._id} />
+            <ProductOrderBtn product={product} />
           </div>
         </div>
       </div>

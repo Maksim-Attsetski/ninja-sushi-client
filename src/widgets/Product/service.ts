@@ -1,11 +1,30 @@
 import { IProduct } from 'widgets/Product';
-import { $api, IQuery } from 'shared';
+import { $api, getError, IQuery, Logger } from 'shared';
 
 class ProductService {
   async getAll(params: IQuery): Promise<IProduct[]> {
-    const data = await $api.get('product', { params });
+    try {
+      const data = await $api.get<IProduct[]>('product', { params });
 
-    return data.data;
+      Logger.log('Success get product list', data.data);
+      return data.data;
+    } catch (error) {
+      const err = getError(error);
+      Logger.error(err?.message);
+      throw err;
+    }
+  }
+  async edit(_id: string, product: IProduct): Promise<IProduct> {
+    try {
+      const data = await $api.patch('product/' + _id, product);
+
+      Logger.log('Successfully edit product', data.data);
+      return data.data;
+    } catch (error) {
+      const err = getError(error);
+      Logger.error(err?.message);
+      throw err;
+    }
   }
 }
 

@@ -2,11 +2,14 @@ import React, { FC, memo } from 'react';
 
 interface IProps {
   size?: number;
+  fill?: string;
   stroke?: string;
   strokeWidth?: number;
 }
-const PlusSvg: FC<IProps> = ({
+
+const MinusSvg: FC<IProps> = ({
   size = 24,
+  fill = 'none',
   stroke = '#00CC2D',
   strokeWidth = 6,
 }) => {
@@ -15,18 +18,11 @@ const PlusSvg: FC<IProps> = ({
       width={size}
       height={size}
       viewBox='0 0 48 48'
-      fill='none'
+      fill={fill}
       xmlns='http://www.w3.org/2000/svg'
     >
       <path
-        d='M24.0605 10L24.0239 38'
-        stroke={stroke}
-        strokeWidth={strokeWidth}
-        strokeLinecap='round'
-        strokeLinejoin='round'
-      />
-      <path
-        d='M10 24L38 24'
+        d='M10.5 24L38.5 24'
         stroke={stroke}
         strokeWidth={strokeWidth}
         strokeLinecap='round'
@@ -35,4 +31,4 @@ const PlusSvg: FC<IProps> = ({
     </svg>
   );
 };
-export default memo(PlusSvg);
+export default memo(MinusSvg);

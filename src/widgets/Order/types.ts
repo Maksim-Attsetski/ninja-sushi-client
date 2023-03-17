@@ -13,7 +13,7 @@ export interface ICreateOrder<P = IProduct | string, U = string> {
   paymentsType: TPaymentsType;
   status: TOrderStatus;
   comment: string;
-  products: { product: P; count: number }[];
+  products: { product: P; count: number; _id?: string }[];
   authorId: U;
 }
 

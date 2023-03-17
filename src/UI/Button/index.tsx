@@ -22,6 +22,7 @@ interface IProps
   text: string | ReactElement | ReactNode;
   auth?: boolean;
   colorType?: 'white' | 'secondary';
+  small?: boolean;
 }
 const Button: FC<IProps> = ({
   text,
@@ -29,6 +30,7 @@ const Button: FC<IProps> = ({
   colorType = '',
   onClick,
   className,
+  small = false,
   ...props
 }) => {
   const navigate = useNavigate();
@@ -45,7 +47,9 @@ const Button: FC<IProps> = ({
   return (
     <button
       {...props}
-      className={[s.button, s[colorType], className].join(' ')}
+      className={[s.button, s[colorType], small && s.small, className].join(
+        ' '
+      )}
       onClick={onButtonClick}
     >
       {text}

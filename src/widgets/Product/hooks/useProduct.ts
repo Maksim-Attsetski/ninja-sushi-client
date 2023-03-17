@@ -4,13 +4,19 @@ import { IProduct, productService, TProductType } from '..';
 
 export const useProduct = () => {
   const products = useTypedSelector((state) => state.product);
-  const { setProductsAC } = useActions().action;
+  const { action } = useActions();
 
   const getProducts = async (query: IQuery) => {
     const data = await productService.getAll(query);
 
-    setProductsAC(data);
+    action.setProductsAC(data);
   };
 
-  return { ...products, getProducts };
+  const editProduct = async (_id: string, product: IProduct) => {
+    const data = await productService.edit(_id, product);
+
+    action.editProductsAC(data);
+  };
+
+  return { ...products, getProducts, editProduct };
 };
