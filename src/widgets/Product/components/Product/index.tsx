@@ -14,6 +14,7 @@ interface IProps {
 
 const Product: FC<IProps> = ({ product }) => {
   const { user, onLikeProduct, getIds } = useUsers();
+
   const productWeightType = useMemo(
     () => (product.type === 'drinks' ? 'мл' : 'г'),
     [product.type]
