@@ -8,6 +8,8 @@ import AudioToTextConverter from './AudioToTextConverter';
 import Input from './Input';
 import Button from './Button';
 
+export * from './Select';
+
 export {
   Input,
   AudioToTextConverter,

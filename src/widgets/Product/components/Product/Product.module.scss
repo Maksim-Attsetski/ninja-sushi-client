@@ -13,11 +13,11 @@
   &ImgBlock {
     @apply relative;
     .emoji {
-      @apply absolute bottom-1 left-0;
+      @apply absolute bottom-1 z-0 left-0;
     }
   }
   &Img {
-    @apply w-11/12 mx-auto;
+    @apply w-11/12 mx-auto z-0;
     @include for-tablet {
       @apply my-auto w-full;
     }  

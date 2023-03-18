@@ -1,18 +1,20 @@
-import React, { FC, memo, useMemo } from 'react';
+import React, { FC, memo, useMemo, useState } from 'react';
+
 import { useParams } from 'react-router-dom';
-import { List } from 'UI';
+
 import {
   CategoryBar,
-  FilteredProducts,
-  Product,
+  ProductFilter,
+  IProduct,
   ProductList,
   productTypes,
   TProductType,
-  useProduct,
 } from 'widgets/Product';
 
 const CategoryPage: FC = (props) => {
   const type = useParams()?.type as TProductType;
+
+  const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
   const curProductType = useMemo(
     () => productTypes.find((el) => el.type === type),
@@ -23,7 +25,18 @@ const CategoryPage: FC = (props) => {
     <div className='container'>
       <CategoryBar />
 
-      {curProductType && <FilteredProducts productType={curProductType} />}
+      {curProductType && (
+        <>
+          <ProductFilter
+            setFilteredProducts={setFilteredProducts}
+            productType={curProductType}
+          />
+          <ProductList
+            type={curProductType.type}
+            filteredProducts={filteredProducts}
+          />
+        </>
+      )}
       {/* {curProductType?.type && <ProductList type={curProductType?.type} />} */}
     </div>
   );

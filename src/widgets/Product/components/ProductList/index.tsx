@@ -1,21 +1,22 @@
 import { useTypedSelector } from 'hooks';
 import React, { FC, memo, useMemo } from 'react';
 import { Gap, List, Title } from 'UI';
-import { Product, TProductType } from 'widgets/Product';
+import { IProduct, Product, TProductType } from 'widgets/Product';
 
 import s from './ProductList.module.scss';
 
 interface IProps {
   type: TProductType;
   text?: string;
+  filteredProducts?: IProduct[] | null;
 }
 
-const ProductList: FC<IProps> = ({ type, text }) => {
+const ProductList: FC<IProps> = ({ type, text, filteredProducts = null }) => {
   const { products } = useTypedSelector((state) => state.product);
 
   const productList = useMemo(
-    () => products.filter((el) => el.type === type) || [],
-    [products, type]
+    () => filteredProducts || products.filter((el) => el.type === type) || [],
+    [products, filteredProducts, type]
   );
 
   return (
