@@ -1,6 +1,23 @@
+import EditProfile from './components/EditProfile';
+import ProfileSider from './components/ProfileSider';
+import UserDelivery from './components/UserDelivery';
+import UserHistory from './components/UserHistory';
+import UserTheme from './components/UserTheme';
+
 export * from './types';
+
 import useUsers from './hooks/useUsers';
 import userService from './service';
 import userReducer, { actions } from './state';
 
-export { useUsers, userReducer, userService, actions };
+export {
+  EditProfile,
+  ProfileSider,
+  UserHistory,
+  UserDelivery,
+  UserTheme,
+  useUsers,
+  userReducer,
+  userService,
+  actions,
+};

@@ -1,0 +1,21 @@
+@import 'shared/all.scss';
+
+
+.container {}
+
+.item {
+  @apply py-3 px-4 rounded-xl transition-all cursor-pointer;
+  &.active {
+    background-color: $secondary;
+    color: white;
+  }
+}
+
+.infoBlock {
+  @apply my-2 py-2 px-4 bg-white rounded-xl;
+
+  &Name {
+    font-size: calc(8px + 2vmin);
+    @apply font-medium capitalize;
+  }
+}

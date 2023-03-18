@@ -2,7 +2,7 @@
 
 .button {
   background-color: $accent;
-  @apply transition-all text-white text-center font-medium py-4 px-6 text-base rounded-xl;
+  @apply transition-all text-white text-center font-medium py-3 px-6 text-base rounded-xl;
   
   &:active {
     transform: translateY(2px);

@@ -22,7 +22,7 @@ const useUsers = () => {
     try {
       const response = await userService.editUser(user?._id, userData);
 
-      action.editUserAC(response);
+      action.editUserAC({ ...userData, _id: user?._id });
     } catch (error) {
       throw error;
     }

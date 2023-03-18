@@ -6,6 +6,12 @@ import { routeNames } from './types';
 import { Layout } from 'widgets/Layout';
 import { useAuth } from 'widgets/Auth';
 import { useOrder } from 'widgets/Order';
+import {
+  EditProfile,
+  UserDelivery,
+  UserHistory,
+  UserTheme,
+} from 'widgets/User';
 
 const Navigation: FC = () => {
   const { isAuth, onRefresh } = useAuth();
@@ -28,7 +34,24 @@ const Navigation: FC = () => {
             <Route element={<screens.Liked />} path={routeNames.Liked} />
             <Route element={<screens.News />} path={routeNames.News} />
             <Route element={<screens.Order />} path={routeNames.Order} />
-            <Route element={<screens.Profile />} path={routeNames.Profile} />
+            <Route element={<screens.Profile />} path={routeNames.Profile}>
+              <Route
+                element={<EditProfile />}
+                path={routeNames.Profile + '/edit'}
+              />
+              <Route
+                element={<UserHistory />}
+                path={routeNames.Profile + '/history'}
+              />
+              <Route
+                element={<UserDelivery />}
+                path={routeNames.Profile + '/delivery'}
+              />
+              <Route
+                element={<UserTheme />}
+                path={routeNames.Profile + '/theme'}
+              />
+            </Route>
             <Route
               element={<screens.Category />}
               path={routeNames.Category + '/:type'}

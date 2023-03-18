@@ -1,0 +1,7 @@
+
+.btnContainer {
+  @apply flex justify-center;
+  .btn {
+    @apply px-10 py-3;
+  }
+}
