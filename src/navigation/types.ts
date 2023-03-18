@@ -11,4 +11,5 @@ export enum routeNames {
   Liked = '/liked',
   Profile = '/profile',
   Order = '/order',
+  Category = '/category',
 }

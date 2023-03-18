@@ -1,5 +1,6 @@
 import About from './AboutPage';
 import Auth from './AuthPage';
+import Category from './CategoryPage';
 import Delivery from './DeliveryPage';
 import Home from './HomePage';
 import Liked from './LikedPage';
@@ -18,4 +19,5 @@ export const screens = {
   Home,
   Notfound,
   Auth,
+  Category,
 };

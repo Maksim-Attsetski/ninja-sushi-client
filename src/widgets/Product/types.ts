@@ -1,10 +1,26 @@
-export type TProductType = 'sushi' | 'rolls' | 'set' | 'drinks';
+import { assets } from 'assets';
 
-export const productTypes: { type: TProductType; text: string }[] = [
-  { type: 'sushi', text: 'Суши' },
-  { type: 'rolls', text: 'Роллы' },
-  { type: 'set', text: 'Сеты' },
-  { type: 'drinks', text: 'Напитки' },
+export type TProductType =
+  | 'sushi'
+  | 'rolls'
+  | 'set'
+  | 'drinks'
+  | 'appetizers'
+  | 'sauces';
+
+interface IProductTypes {
+  type: TProductType;
+  text: string;
+  icon?: typeof assets.sushiDefault;
+}
+
+export const productTypes: IProductTypes[] = [
+  { type: 'sushi', text: 'Суши', icon: assets.sushiIcon },
+  { type: 'rolls', text: 'Роллы', icon: assets.rollsIcon },
+  { type: 'set', text: 'Сеты', icon: assets.setIcon },
+  { type: 'drinks', text: 'Напитки', icon: assets.drinksIcon },
+  { type: 'appetizers', text: 'Боулы', icon: assets.appetizersIcon },
+  { type: 'sauces', text: 'Соусы', icon: assets.saucesIcon },
 ];
 
 export const enum IStrengths {

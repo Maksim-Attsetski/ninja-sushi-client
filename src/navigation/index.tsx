@@ -29,6 +29,10 @@ const Navigation: FC = () => {
             <Route element={<screens.News />} path={routeNames.News} />
             <Route element={<screens.Order />} path={routeNames.Order} />
             <Route element={<screens.Profile />} path={routeNames.Profile} />
+            <Route
+              element={<screens.Category />}
+              path={routeNames.Category + '/:type'}
+            />
           </Route>
         ) : (
           <>
