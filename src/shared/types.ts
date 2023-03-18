@@ -4,4 +4,5 @@ export interface IQuery {
   dependencies?: boolean | string[];
   search?: string;
   filter?: string;
+  sort?: string;
 }

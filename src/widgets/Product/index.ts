@@ -2,6 +2,7 @@ export * from './types';
 export * from './hooks/useProduct';
 
 import CategoryBar from './components/CategoryBar';
+import FilteredProducts from './components/FilteredProducts';
 import Product from './components/Product';
 import ProductList from './components/ProductList';
 import productService from './service';
@@ -14,4 +15,5 @@ export {
   Product,
   ProductList,
   CategoryBar,
+  FilteredProducts,
 };

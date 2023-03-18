@@ -8,13 +8,13 @@ export type TProductType =
   | 'appetizers'
   | 'sauces';
 
-interface IProductTypes {
+export interface IProductTypeArray {
   type: TProductType;
   text: string;
   icon?: typeof assets.sushiDefault;
 }
 
-export const productTypes: IProductTypes[] = [
+export const productTypes: IProductTypeArray[] = [
   { type: 'sushi', text: 'Суши', icon: assets.sushiIcon },
   { type: 'rolls', text: 'Роллы', icon: assets.rollsIcon },
   { type: 'set', text: 'Сеты', icon: assets.setIcon },

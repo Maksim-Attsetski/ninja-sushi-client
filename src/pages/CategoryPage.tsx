@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { List } from 'UI';
 import {
   CategoryBar,
+  FilteredProducts,
   Product,
   ProductList,
   productTypes,
@@ -21,9 +22,9 @@ const CategoryPage: FC = (props) => {
   return (
     <div className='container'>
       <CategoryBar />
-      <div>CategoryPage</div>
 
-      {curProductType?.type && <ProductList type={curProductType?.type} />}
+      {curProductType && <FilteredProducts productType={curProductType} />}
+      {/* {curProductType?.type && <ProductList type={curProductType?.type} />} */}
     </div>
   );
 };
