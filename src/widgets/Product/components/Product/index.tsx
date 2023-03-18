@@ -38,7 +38,9 @@ const Product: FC<IProps> = ({ product }) => {
   );
 
   const onClickLike = async () => {
-    await onLikeProduct(product._id);
+    if (product?._id) {
+      await onLikeProduct(product._id);
+    }
   };
 
   return (

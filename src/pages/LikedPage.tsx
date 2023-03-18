@@ -1,9 +1,12 @@
 import React, { FC } from 'react';
+import { Title } from 'UI';
+import { LikedProducts } from 'widgets/Product';
 
 const LikedPage: FC = () => {
   return (
-    <div>
-      <div>LikedPage</div>
+    <div className='container'>
+      <Title text='Избранные продукты' />
+      <LikedProducts />
     </div>
   );
 };

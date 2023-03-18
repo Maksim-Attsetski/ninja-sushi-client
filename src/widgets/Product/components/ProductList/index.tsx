@@ -31,9 +31,9 @@ const ProductList: FC<IProps> = ({ type, text, filteredProducts = null }) => {
       )}
       <List
         data={productList}
+        renderItem={(item) => <Product product={item} />}
         containerClassname={s.list}
         itemClassname={s.item}
-        renderItem={(item) => <Product product={item} />}
         emptyElement={
           <>
             <div className={s.empty}>
