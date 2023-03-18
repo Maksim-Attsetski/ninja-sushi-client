@@ -1,0 +1,9 @@
+@import 'shared/all.scss';
+
+.container {
+  @apply w-full flex justify-center;
+  .btn {
+    @apply bg-white px-16;
+    color: $accent;
+  }
+}

@@ -1,3 +1,4 @@
+import { usePagination } from 'hooks';
 import React, {
   Dispatch,
   FC,
@@ -7,7 +8,7 @@ import React, {
   useState,
 } from 'react';
 import { IQuery } from 'shared';
-import { IOptions, Select } from 'UI';
+import { Button, IOptions, Select } from 'UI';
 import {
   IProduct,
   IProductTypeArray,
@@ -20,6 +21,8 @@ import s from './ProductFilter.module.scss';
 interface IProps {
   productType: IProductTypeArray;
   setFilteredProducts: Dispatch<SetStateAction<IProduct[]>>;
+  limit: number;
+  page: number;
 }
 
 const enum sortOptionsText {
@@ -53,7 +56,12 @@ interface ISortOptions {
   text: sortOptionsText;
 }
 
-const ProductFilter: FC<IProps> = ({ productType, setFilteredProducts }) => {
+const ProductFilter: FC<IProps> = ({
+  productType,
+  setFilteredProducts,
+  limit,
+  page,
+}) => {
   const { getProducts } = useProduct();
   const [sortOptions, setSortOptions] = useState<ISortOptions>({
     field: 'price',
@@ -72,6 +80,8 @@ const ProductFilter: FC<IProps> = ({ productType, setFilteredProducts }) => {
       }`,
       sort: sortOptions.field + '==' + sortOptions.by,
       dependencies: true,
+      limit,
+      page,
     };
     const products = await getProducts(query, true);
 
@@ -100,7 +110,7 @@ const ProductFilter: FC<IProps> = ({ productType, setFilteredProducts }) => {
 
   useEffect(() => {
     onGetCurProducts();
-  }, [productType, sortOptions, activeStrengths]);
+  }, [productType, sortOptions, activeStrengths, limit, page]);
 
   return (
     <div>
