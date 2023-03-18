@@ -42,6 +42,7 @@ export const Select: FC<IProps> = ({ options, value, setValue }) => {
 
   return (
     <motion.div
+      ref={ref}
       initial={false}
       animate={isOpen ? 'open' : 'closed'}
       className={s.menu}

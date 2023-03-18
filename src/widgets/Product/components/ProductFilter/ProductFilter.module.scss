@@ -4,6 +4,7 @@
   @apply flex flex-wrap items-center gap-3 my-3;
   &Item {
     @apply py-3 px-4 rounded-2xl cursor-pointer bg-white transition-all;
+    filter: drop-shadow(1px 1px 1px #33333370);
     border: 2px solid #fff;
     &.active {
       border: 2px solid $secondary;
