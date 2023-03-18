@@ -1,7 +1,7 @@
 import { useTypedSelector } from 'hooks';
 import React, { FC, memo, useMemo } from 'react';
 import { Gap, List, Title } from 'UI';
-import { IProduct, Product, TProductType } from 'widgets/Product';
+import { Product, TProductType } from 'widgets/Product';
 
 import s from './ProductList.module.scss';
 
@@ -18,7 +18,7 @@ const ProductList: FC<IProps> = ({ type, text }) => {
     [products, type]
   );
 
-  return productList.length > 0 ? (
+  return (
     <div>
       {text && (
         <>
@@ -33,9 +33,16 @@ const ProductList: FC<IProps> = ({ type, text }) => {
         containerClassname={s.list}
         itemClassname={s.item}
         renderItem={(item) => <Product product={item} />}
+        emptyElement={
+          <>
+            <div className={s.empty}>
+              Товаров для данной категории нет в наличии
+            </div>
+          </>
+        }
       />
       <Gap y={15} />
     </div>
-  ) : null;
+  );
 };
 export default memo(ProductList);

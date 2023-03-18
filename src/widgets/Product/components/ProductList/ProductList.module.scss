@@ -11,3 +11,7 @@
     width: clamp(280px, 100%, 500px);
   }
 }
+
+.empty {
+  @apply bg-white rounded-xl py-2 px-4 my-3 mx-auto;
+}
