@@ -1,7 +1,8 @@
 import { routeNames } from 'navigation/types';
 import React, { FC, memo, useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SubTitle } from 'UI';
+import { Button, Gap, SubTitle } from 'UI';
+import { useAuth } from 'widgets/Auth';
 import { useUsers } from 'widgets/User';
 
 import s from './ProfileSider.module.scss';
@@ -16,6 +17,8 @@ const siderContent = [
 const ProfileSider: FC = () => {
   const navigate = useNavigate();
   const { user } = useUsers();
+  const { onLogout } = useAuth();
+
   const [activeRoute, setActiveRoute] = useState(siderContent[0].to);
 
   const onClickItem = (to: string) => {
@@ -44,6 +47,8 @@ const ProfileSider: FC = () => {
         {user?.email && <SubTitle text={user?.email} />}
         {user?.phone && <div>{user?.phone}</div>}
       </div>
+      <Gap y={10} />
+      <Button text='Выйти' onClick={onLogout} />
     </div>
   );
 };
