@@ -1,6 +1,9 @@
-import React, { FC, memo } from 'react';
+import { assets } from 'assets';
+import { routeNames } from 'navigation/types';
+import React, { FC, memo, useMemo } from 'react';
+import { useNavigate } from 'react-router-dom';
 import dateHelper from 'shared/helpers/dateHelper';
-import { Title } from 'UI';
+import { SubTitle, Title } from 'UI';
 import { INews } from 'widgets/News';
 import s from './NewsItem.module.scss';
 
@@ -9,11 +12,34 @@ interface IProps {
 }
 
 const NewsItem: FC<IProps> = ({ news }) => {
+  const navigate = useNavigate();
+
+  const beautifulDate = useMemo(
+    () => dateHelper.getTimeString(news.createdAt, 'ru'),
+    [news.createdAt]
+  );
+
+  const onOpenNews = () => {
+    navigate(routeNames.News + '/' + news._id);
+  };
+
   return (
-    <div>
-      <Title text={news.title} />
-      <div>{news.description}</div>
-      {dateHelper.getTimeString(news.createdAt)}
+    <div className={s.news}>
+      <img
+        className={s.img}
+        src={news.preview || assets.noPhoto}
+        alt={news.title}
+      />
+      <div className={s.content}>
+        <div className={s.infoBlock}>
+          <div className={s.infoBlockTag}>{news.tag[0]}</div>
+          <div className={s.infoBlockDate}>{beautifulDate}</div>
+        </div>
+        <Title text={news.title} className={s.title} />
+        <div className={s.moreBtn} onClick={onOpenNews}>
+          Подробнее
+        </div>
+      </div>
     </div>
   );
 };

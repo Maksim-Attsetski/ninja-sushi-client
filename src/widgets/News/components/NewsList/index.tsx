@@ -16,7 +16,7 @@ const NewsList: FC<IProps> = ({ query = {} }) => {
 
   useEffect(() => {
     onGetNews(query);
-  });
+  }, []);
 
   return (
     <div>

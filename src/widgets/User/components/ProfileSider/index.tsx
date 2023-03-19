@@ -1,6 +1,7 @@
-import { routeNames } from 'navigation/types';
 import React, { FC, memo, useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { routeNames } from 'navigation/types';
 import { Button, Gap, SubTitle } from 'UI';
 import { useAuth } from 'widgets/Auth';
 import { useUsers } from 'widgets/User';

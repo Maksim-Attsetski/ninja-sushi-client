@@ -3,10 +3,10 @@ import { NewsList } from 'widgets/News';
 
 const NewsPage: FC = () => {
   return (
-    <div>
+    <div className='container'>
       <div>NewsPage</div>
 
-      {/* <NewsList /> */}
+      <NewsList />
     </div>
   );
 };
