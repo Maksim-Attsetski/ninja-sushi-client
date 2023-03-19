@@ -7,6 +7,7 @@ import { useUsers } from 'widgets/User';
 
 import s from './Product.module.scss';
 import ProductOrderBtn from '../ProductOrderBtn';
+import { getPhoto } from 'shared';
 
 interface IProps {
   product: IProduct;
@@ -37,6 +38,11 @@ const Product: FC<IProps> = ({ product }) => {
     [product._id, user?.favorite_products_ids?.length]
   );
 
+  const productPreview = useMemo(
+    () => getPhoto(product.preview),
+    [product.preview]
+  );
+
   const onClickLike = async () => {
     if (product?._id) {
       await onLikeProduct(product._id);
@@ -46,11 +52,7 @@ const Product: FC<IProps> = ({ product }) => {
   return (
     <div className={s.product}>
       <div className={s.productImgBlock}>
-        <img
-          className={s.productImg}
-          src={product?.preview || assets.noPhoto}
-          alt=''
-        />
+        <img className={s.productImg} src={productPreview} alt={product.name} />
         <div className={s.emoji}>{productStrengths}</div>
       </div>
       <div>
