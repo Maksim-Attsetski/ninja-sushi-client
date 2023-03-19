@@ -1,7 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { INews } from './types';
 
 interface IState {
-  news: any[];
+  news: INews[];
 }
 
 const initialState: IState = {
@@ -12,14 +13,14 @@ const newsSlice = createSlice({
   name: 'newsSlice',
   initialState,
   reducers: {
-    setNewsAC: (state: IState, action: PayloadAction<any[]>) => {
+    setNewsAC: (state: IState, action: PayloadAction<INews[]>) => {
       state.news = action.payload;
     },
-    addNewsAC: (state: IState, action: PayloadAction<any>) => {
+    addNewsAC: (state: IState, action: PayloadAction<INews>) => {
       state.news = [...state.news, action.payload];
     },
-    editNewsAC: (state: IState, action: PayloadAction<any>) => {
-      state.news = state.news.map((item: any) =>
+    editNewsAC: (state: IState, action: PayloadAction<INews>) => {
+      state.news = state.news.map((item: INews) =>
         item?._id === action.payload._id ? { ...item, ...action.payload } : item
       );
     },

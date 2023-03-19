@@ -1,0 +1,17 @@
+@import 'shared/all.scss';
+
+.list {
+  @apply w-full flex flex-wrap justify-between items-center gap-x-2 gap-y-5;
+}
+
+.item {
+  width: clamp(280px, 100%, 330px);
+
+  @include for-tablet {
+    width: clamp(280px, 100%, 500px);
+  }
+}
+
+.empty {
+  @apply bg-white rounded-xl py-2 px-4 my-3 mx-auto;
+}

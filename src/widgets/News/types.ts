@@ -7,5 +7,5 @@ export interface ICreateNews {
 
 export interface INews extends ICreateNews {
   _id: string;
-  createdAt: string;
+  createdAt: number;
 }

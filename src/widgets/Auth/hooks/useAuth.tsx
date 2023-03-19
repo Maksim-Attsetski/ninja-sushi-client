@@ -48,15 +48,14 @@ const useAuth = () => {
     try {
       const data = await authService.refresh();
 
+      setAuth(data);
       if (data?._id) {
         await onGetOrderList({
           filter: `authorId==${data?._id};status==not paid`,
         });
         await getProducts({ dependencies: true });
-        await onGetNews({ sort: 'createdAt==desc' });
+        await onGetNews({ sort: 'createdAt==desc', limit: 10 });
       }
-
-      setAuth(data);
     } catch (error) {
       throw error;
     }
