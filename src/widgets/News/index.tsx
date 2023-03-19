@@ -1,0 +1,7 @@
+import useNews from './hooks/useNews';
+import NewsService from './service';
+import newsReducer, { actions } from './state';
+
+export * from './types';
+
+export { NewsService, newsReducer, actions, useNews };

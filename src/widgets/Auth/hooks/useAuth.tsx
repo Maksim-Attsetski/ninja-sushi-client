@@ -1,4 +1,5 @@
 import { useActions, useTypedSelector } from 'hooks';
+import { useNews } from 'widgets/News';
 import { useOrder } from 'widgets/Order';
 import { IIngredient, useProduct } from 'widgets/Product';
 import { ILogin, ISignup, IUser } from 'widgets/User';
@@ -9,6 +10,7 @@ const useAuth = () => {
   const { action } = useActions();
   const { onGetOrderList } = useOrder();
   const { getProducts } = useProduct();
+  const { onGetNews } = useNews();
 
   const setAuth = (data: IUser<string | IIngredient> | boolean) => {
     action.setUserAC(typeof data === 'boolean' ? null : data);
@@ -51,6 +53,7 @@ const useAuth = () => {
           filter: `authorId==${data?._id};status==not paid`,
         });
         await getProducts({ dependencies: true });
+        await onGetNews({ sort: 'createdAt==desc' });
       }
 
       setAuth(data);

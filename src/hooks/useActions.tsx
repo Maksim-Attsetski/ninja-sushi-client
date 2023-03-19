@@ -5,6 +5,7 @@ import { actions as productActions } from 'widgets/Product';
 import { actions as authActions } from 'widgets/Auth';
 import { actions as userActions } from 'widgets/User';
 import { actions as orderActions } from 'widgets/Order';
+import { actions as newsActions } from 'widgets/News';
 
 const useActions = () => {
   const dispatch = useTypedDispatch();
@@ -13,6 +14,7 @@ const useActions = () => {
     ...productActions,
     ...authActions,
     ...userActions,
+    ...newsActions,
     ...orderActions,
   };
 
