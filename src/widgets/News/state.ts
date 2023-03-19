@@ -17,7 +17,7 @@ const newsSlice = createSlice({
       state.news = action.payload;
     },
     addNewsAC: (state: IState, action: PayloadAction<INews>) => {
-      state.news = [...state.news, action.payload];
+      state.news = [action.payload, ...state.news];
     },
     editNewsAC: (state: IState, action: PayloadAction<INews>) => {
       state.news = state.news.map((item: INews) =>

@@ -1,10 +1,11 @@
-import { assets } from 'assets';
-import { routeNames } from 'navigation/types';
 import React, { FC, memo, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import dateHelper from 'shared/helpers/dateHelper';
-import { SubTitle, Title } from 'UI';
+import { routeNames } from 'navigation/types';
+
+import { dateHelper, getPhoto } from 'shared';
+import { Title } from 'UI';
 import { INews } from 'widgets/News';
+
 import s from './NewsItem.module.scss';
 
 interface IProps {
@@ -23,13 +24,11 @@ const NewsItem: FC<IProps> = ({ news }) => {
     navigate(routeNames.News + '/' + news._id);
   };
 
+  const photo = useMemo(() => getPhoto(news?.preview), [news?.preview]);
+
   return (
     <div className={s.news}>
-      <img
-        className={s.img}
-        src={news.preview || assets.noPhoto}
-        alt={news.title}
-      />
+      <img className={s.img} src={photo} alt={news.title} />
       <div className={s.content}>
         <div className={s.infoBlock}>
           <div className={s.infoBlockTag}>{news.tag[0]}</div>
