@@ -11,11 +11,24 @@ import {
   UserHistory,
   UserTheme,
 } from 'widgets/User';
+import { useProduct } from 'widgets/Product';
+import { useNews } from 'widgets/News';
 
 const Navigation: FC = () => {
   const { isAuth, onRefresh } = useAuth();
 
+  const { getProducts } = useProduct();
+  const { onGetNews } = useNews();
+
+  const onGetAll = async () => {
+    Promise.all([
+      getProducts({ dependencies: true }),
+      onGetNews({ sort: 'createdAt==desc', limit: 10 }),
+    ]);
+  };
+
   useEffect(() => {
+    onGetAll();
     onRefresh();
   }, []);
 

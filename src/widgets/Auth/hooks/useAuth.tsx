@@ -9,8 +9,6 @@ const useAuth = () => {
   const { isAuth } = useTypedSelector((state) => state.auth);
   const { action } = useActions();
   const { onGetOrderList } = useOrder();
-  const { getProducts } = useProduct();
-  const { onGetNews } = useNews();
 
   const setAuth = (data: IUser<string | IIngredient> | boolean) => {
     action.setUserAC(typeof data === 'boolean' ? null : data);
@@ -49,9 +47,6 @@ const useAuth = () => {
       const data = await authService.refresh();
 
       setAuth(data);
-      await getProducts({ dependencies: true });
-      await onGetNews({ sort: 'createdAt==desc', limit: 10 });
-
       if (data?._id) {
         await onGetOrderList({
           filter: `authorId==${data?._id};status==not paid`,
