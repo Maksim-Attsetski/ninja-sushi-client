@@ -5,7 +5,6 @@ import { screens } from 'pages';
 import { routeNames } from './types';
 import { Layout } from 'widgets/Layout';
 import { useAuth } from 'widgets/Auth';
-import { useOrder } from 'widgets/Order';
 import {
   EditProfile,
   UserDelivery,
@@ -33,6 +32,10 @@ const Navigation: FC = () => {
             <Route element={<screens.Delivery />} path={routeNames.Delivery} />
             <Route element={<screens.Liked />} path={routeNames.Liked} />
             <Route element={<screens.News />} path={routeNames.News} />
+            <Route
+              element={<screens.NewsItem />}
+              path={routeNames.News + '/:id'}
+            />
             <Route element={<screens.Order />} path={routeNames.Order} />
             <Route element={<screens.Profile />} path={routeNames.Profile}>
               <Route

@@ -4,6 +4,7 @@ import Category from './CategoryPage';
 import Delivery from './DeliveryPage';
 import Home from './HomePage';
 import Liked from './LikedPage';
+import NewsItem from './NewsItemPage';
 import News from './NewsPage';
 import Notfound from './Notfound';
 import Order from './OrderPage';
@@ -20,4 +21,5 @@ export const screens = {
   Notfound,
   Auth,
   Category,
+  NewsItem,
 };

@@ -1,0 +1,31 @@
+@import 'shared/all.scss';
+
+.news {
+  @apply w-full;
+}
+
+.img {
+  @apply rounded-xl ;
+  object-fit: cover;
+}
+
+.tags {
+  @apply flex flex-wrap my-4 items-center gap-3;
+
+  &Item {
+    @apply bg-white py-2 px-4 rounded-lg;
+  }
+}
+
+.date {
+  color: #9e9e9e;
+}
+
+.moreBtn {
+  color: $accent;
+  cursor: pointer;
+}
+
+.title {
+  @apply text-center my-3;
+}
