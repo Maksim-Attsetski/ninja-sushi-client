@@ -1,16 +1,18 @@
 import React, { FC, FormEvent, memo, useState } from 'react';
 
+import { CredentialResponse, GoogleLogin } from '@react-oauth/google';
+import { useNavigate } from 'react-router-dom';
+
 import { useInput } from 'hooks';
 import { Button, Gap, Input, Title } from 'UI';
-import useAuth from '../../hooks/useAuth';
+import { routeNames } from 'navigation/types';
+import { ILogin, ISignup } from 'widgets/User';
+import { useAuth } from 'widgets/Auth';
 
 import s from './AuthForm.module.scss';
-import { ILogin, ISignup } from 'widgets/User';
-import { useNavigate } from 'react-router-dom';
-import { routeNames } from 'navigation/types';
 
 const AuthForm: FC = () => {
-  const { onLogin, onSignup } = useAuth();
+  const { onLogin, onSignup, onAuthByGoogle } = useAuth();
   const navigate = useNavigate();
 
   const [isLogin, setIsLogin] = useState<boolean>(false);
@@ -37,6 +39,11 @@ const AuthForm: FC = () => {
       await onSignup(signupdto);
     }
 
+    navigate(routeNames.Home);
+  };
+
+  const onSuccess = async (payload: CredentialResponse) => {
+    await onAuthByGoogle(payload);
     navigate(routeNames.Home);
   };
 
@@ -73,6 +80,18 @@ const AuthForm: FC = () => {
             type='submit'
           />
         </form>
+        <br />
+        <hr />
+        <br />
+        <div>
+          <GoogleLogin
+            useOneTap
+            onSuccess={onSuccess}
+            onError={() => console.log('error')}
+            locale='ru'
+            text='continue_with'
+          />
+        </div>
       </div>
     </div>
   );

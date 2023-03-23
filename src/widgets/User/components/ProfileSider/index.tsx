@@ -7,6 +7,7 @@ import { useAuth } from 'widgets/Auth';
 import { useUsers } from 'widgets/User';
 
 import s from './ProfileSider.module.scss';
+import { googleLogout } from '@react-oauth/google';
 
 const siderContent = [
   { text: 'Редактирование профиля', to: 'edit' },
@@ -25,6 +26,12 @@ const ProfileSider: FC = () => {
   const onClickItem = (to: string) => {
     navigate(routeNames.Profile + '/' + to);
     setActiveRoute(to);
+  };
+
+  const onLogoutClick = async () => {
+    await onLogout();
+    user?.providers.includes('google') && googleLogout();
+    navigate(routeNames.Home);
   };
 
   useEffect(() => {
@@ -49,7 +56,7 @@ const ProfileSider: FC = () => {
         {user?.phone && <div>{user?.phone}</div>}
       </div>
       <Gap y={10} />
-      <Button text='Выйти' onClick={onLogout} />
+      <Button text='Выйти' onClick={onLogoutClick} />
     </div>
   );
 };

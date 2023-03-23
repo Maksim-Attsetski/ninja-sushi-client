@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 import { routeNames } from 'navigation/types';
-
 import s from './style.module.scss';
+
 import { assets } from 'assets';
 import { useAuth } from 'widgets/Auth';
 import { Button } from 'UI';
@@ -19,8 +19,6 @@ const _Header: FC<IProps> = ({ setIsOpen, isOpen }) => {
   const navigate = useNavigate();
   const { isAuth } = useAuth();
   const { orders } = useOrder();
-
-  const onBurgerClick = async () => {};
 
   const onOpen = (to: routeNames) => {
     navigate(to);
@@ -75,7 +73,7 @@ const _Header: FC<IProps> = ({ setIsOpen, isOpen }) => {
               colorType='white'
             />
             <Button
-              onClick={() => onOpen(routeNames.Profile)}
+              onClick={() => onOpen(routeNames[isAuth ? 'Profile' : 'Auth'])}
               text='👤'
               colorType='white'
             />

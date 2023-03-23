@@ -1,6 +1,8 @@
 import React, { FC, memo, useMemo } from 'react';
+import { TGooglePayRes } from 'widgets/Order';
 import { useProduct } from 'widgets/Product';
 import useOrder from '../../hooks/useOrder';
+import PayButton from '../PayButton';
 
 import s from './OrderSumma.module.scss';
 
@@ -22,6 +24,10 @@ const OrderSumma: FC = () => {
       : 0;
   }, [curOrder]);
 
+  const onClickPay = async (res: TGooglePayRes) => {
+    console.log(res);
+  };
+
   return (
     <div>
       <div className={s.summa}>
@@ -31,6 +37,11 @@ const OrderSumma: FC = () => {
         })}{' '}
         BYN
       </div>
+
+      <br />
+      <hr />
+      <br />
+      <PayButton price={summa + ''} onResponse={onClickPay} />
     </div>
   );
 };

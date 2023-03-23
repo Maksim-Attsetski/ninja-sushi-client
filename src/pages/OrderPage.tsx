@@ -8,9 +8,9 @@ const OrderPage: FC = () => {
       <br />
       <Title text='Ваш заказ' />
       <Gap y={10} />
-      <OrderSumma />
       <Gap y={10} />
       <OrderList />
+      <OrderSumma />
     </div>
   );
 };

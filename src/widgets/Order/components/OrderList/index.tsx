@@ -3,17 +3,21 @@ import { List } from 'UI';
 import { IOrder } from 'widgets/Order';
 import useOrder from 'widgets/Order/hooks/useOrder';
 import { Product, useProduct } from 'widgets/Product';
+import { useUsers } from 'widgets/User';
 import Order from '../Order';
 
 import s from './OrderList.module.scss';
 
 const OrderList: FC = () => {
   const { orders, onGetOrderList } = useOrder();
-  const {} = useProduct();
+  // const {} = useProduct();
+  const { user } = useUsers();
 
   useEffect(() => {
-    onGetOrderList();
-  }, []);
+    if (user?._id) {
+      onGetOrderList({ filter: `authorId=${user?._id}` });
+    }
+  }, [user?._id]);
 
   return (
     <div className='container'>

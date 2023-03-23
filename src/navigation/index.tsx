@@ -21,15 +21,15 @@ const Navigation: FC = () => {
   const { onGetNews } = useNews();
 
   const onGetAll = async () => {
-    Promise.all([
+    await Promise.all([
       getProducts({ dependencies: true }),
       onGetNews({ sort: 'createdAt==desc', limit: 10 }),
     ]);
+    await onRefresh();
   };
 
   useEffect(() => {
     onGetAll();
-    onRefresh();
   }, []);
 
   return (

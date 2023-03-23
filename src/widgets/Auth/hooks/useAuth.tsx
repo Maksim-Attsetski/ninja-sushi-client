@@ -1,3 +1,4 @@
+import { CredentialResponse } from '@react-oauth/google';
 import { useActions, useTypedSelector } from 'hooks';
 import { useNews } from 'widgets/News';
 import { useOrder } from 'widgets/Order';
@@ -10,8 +11,10 @@ const useAuth = () => {
   const { action } = useActions();
   const { onGetOrderList } = useOrder();
 
-  const setAuth = (data: IUser<string | IIngredient> | boolean) => {
-    action.setUserAC(typeof data === 'boolean' ? null : data);
+  const setAuth = (data: IUser<string | IIngredient> | null) => {
+    console.log('data', data);
+
+    action.setUserAC(data);
     action.setAuthAC(!!data);
   };
 
@@ -33,10 +36,22 @@ const useAuth = () => {
     }
   };
 
+  const onAuthByGoogle = async (payload: CredentialResponse) => {
+    if (!payload?.credential) return;
+
+    try {
+      const data = await authService.authByGoogle(payload?.credential);
+      setAuth(data);
+    } catch (error) {
+      throw error;
+    }
+  };
+
   const onLogout = async () => {
     try {
       const isSuccess = await authService.logout();
-      isSuccess && setAuth(false);
+
+      isSuccess && setAuth(null);
     } catch (error) {
       throw error;
     }
@@ -57,7 +72,7 @@ const useAuth = () => {
     }
   };
 
-  return { onLogin, onLogout, onRefresh, onSignup, isAuth };
+  return { onLogin, onLogout, onRefresh, onSignup, onAuthByGoogle, isAuth };
 };
 
 export default useAuth;

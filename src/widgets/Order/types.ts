@@ -22,3 +22,5 @@ export interface IOrder extends ICreateOrder {
   createdAt: number;
   archivedAt?: number;
 }
+
+export type TGooglePayRes = google.payments.api.PaymentData;

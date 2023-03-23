@@ -44,6 +44,21 @@ class AuthService {
     }
   }
 
+  async authByGoogle(payload: string) {
+    try {
+      const response = await $api.post<IResponse>('auth/google', { payload });
+
+      this.setToken(response.data);
+      Logger.log('Success API auth by Google', response.data);
+
+      return response.data.user;
+    } catch (error) {
+      const err = getError(error);
+      Logger.error(err?.message);
+      throw err;
+    }
+  }
+
   async logout() {
     try {
       const response = await $api.get<boolean>('auth/logout');
