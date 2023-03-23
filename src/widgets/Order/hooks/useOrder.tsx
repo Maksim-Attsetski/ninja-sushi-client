@@ -13,7 +13,7 @@ const useOrder = () => {
 
     isHistory
       ? action.setHistoryAC(response)
-      : action.setOrdersAC(response[0] || null);
+      : action.setOrdersAC(response.data[0] || null);
   };
 
   const onAddOrder = async (newOrder: ICreateOrder) => {

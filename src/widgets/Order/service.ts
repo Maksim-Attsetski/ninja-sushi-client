@@ -1,10 +1,10 @@
-import { $api, getError, IQuery, Logger } from 'shared';
+import { $api, getError, IGetArray, IQuery, Logger } from 'shared';
 import { ICreateOrder, IOrder } from './types';
 
 class OrderService {
-  async getAll(params: IQuery): Promise<IOrder[]> {
+  async getAll(params: IQuery): Promise<IGetArray<IOrder>> {
     try {
-      const response = await $api.get('order', { params });
+      const response = await $api.get<IGetArray<IOrder>>('order', { params });
 
       Logger.log('Successfully get orderlist', response.data);
       return response.data;

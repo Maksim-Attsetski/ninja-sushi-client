@@ -1,7 +1,8 @@
-import { getError, IQuery, Logger, $api } from 'shared';
+import { getError, IQuery, Logger, $api, IGetArray } from 'shared';
+import { INews } from './types';
 
 class NewsService {
-  async getAll(params: IQuery) {
+  async getAll(params: IQuery): Promise<IGetArray<INews>> {
     try {
       const response = await $api.get('news', { params });
 

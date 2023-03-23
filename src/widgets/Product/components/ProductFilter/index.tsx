@@ -85,7 +85,7 @@ const ProductFilter: FC<IProps> = ({
     };
     const products = await getProducts(query, true);
 
-    products && setFilteredProducts(products);
+    products && setFilteredProducts(products.data);
   };
 
   const onChangeSortOption = (newValue: sortOptionsText) => {

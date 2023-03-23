@@ -1,4 +1,4 @@
-import { $api, getError, IQuery, Logger } from 'shared';
+import { $api, getError, IGetArray, IQuery, Logger } from 'shared';
 import { IUser, TUserWithGeneric } from './types';
 
 const enum routes {
@@ -7,7 +7,7 @@ const enum routes {
 }
 
 class UserService {
-  async getAll(params: IQuery) {
+  async getAll(params: IQuery): Promise<IGetArray<IUser<any>>> {
     try {
       const response = await $api.get(routes.users, { params });
 

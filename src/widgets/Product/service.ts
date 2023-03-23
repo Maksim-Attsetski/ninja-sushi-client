@@ -1,10 +1,10 @@
 import { IProduct } from 'widgets/Product';
-import { $api, getError, IQuery, Logger } from 'shared';
+import { $api, getError, IGetArray, IQuery, Logger } from 'shared';
 
 class ProductService {
-  async getAll(params: IQuery): Promise<IProduct[]> {
+  async getAll(params: IQuery): Promise<IGetArray<IProduct>> {
     try {
-      const data = await $api.get<IProduct[]>('product', { params });
+      const data = await $api.get<IGetArray<IProduct>>('product', { params });
 
       Logger.log('Success get product list', data.data);
       return data.data;

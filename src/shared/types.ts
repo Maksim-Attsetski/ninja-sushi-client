@@ -6,3 +6,9 @@ export interface IQuery {
   filter?: string;
   sort?: string;
 }
+
+export interface IGetArray<T> {
+  data: T[];
+  count: number;
+  last: boolean;
+}

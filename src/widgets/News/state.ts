@@ -1,20 +1,28 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { IGetArray } from 'shared';
 import { INews } from './types';
 
 interface IState {
   news: INews[];
+  count: number;
+  last: boolean;
 }
 
 const initialState: IState = {
   news: [],
+  count: 0,
+  last: true,
 };
 
 const newsSlice = createSlice({
   name: 'newsSlice',
   initialState,
   reducers: {
-    setNewsAC: (state: IState, action: PayloadAction<INews[]>) => {
-      state.news = action.payload;
+    setNewsAC: (state: IState, action: PayloadAction<IGetArray<INews>>) => {
+      const { count, data, last } = action.payload;
+      state.news = data;
+      state.count = count;
+      state.last = last;
     },
     addNewsAC: (state: IState, action: PayloadAction<INews>) => {
       state.news = [action.payload, ...state.news];
