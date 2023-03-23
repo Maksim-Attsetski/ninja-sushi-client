@@ -18,7 +18,7 @@ interface IProps {
 const _Header: FC<IProps> = ({ setIsOpen, isOpen }) => {
   const navigate = useNavigate();
   const { isAuth } = useAuth();
-  const { orders } = useOrder();
+  const { order } = useOrder();
 
   const onOpen = (to: routeNames) => {
     navigate(to);
@@ -36,15 +36,10 @@ const _Header: FC<IProps> = ({ setIsOpen, isOpen }) => {
 
   const orderCount = useMemo(
     () =>
-      orders.reduce((prev, cur) => {
-        const count = cur.products.reduce(
-          (last, current) => (last += current.count),
-          0
-        );
-
-        return count + prev;
-      }, 0),
-    [orders]
+      order
+        ? order?.products.reduce((last, current) => (last += current.count), 0)
+        : 0,
+    [order]
   );
 
   return (

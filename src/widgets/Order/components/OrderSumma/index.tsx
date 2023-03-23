@@ -7,22 +7,17 @@ import PayButton from '../PayButton';
 import s from './OrderSumma.module.scss';
 
 const OrderSumma: FC = () => {
-  const { orders } = useOrder();
+  const { order } = useOrder();
   const { products } = useProduct();
 
-  const curOrder = useMemo(
-    () => orders.find((el) => el.status === 'not_paid'),
-    [orders]
-  );
-
   const summa = useMemo(() => {
-    return curOrder
-      ? curOrder.products.reduce((prev, cur) => {
+    return order
+      ? order.products.reduce((prev, cur) => {
           const product = products.find((el) => el._id === cur.product);
           return product ? (prev += cur.count * product?.price) : 0;
         }, 0)
       : 0;
-  }, [curOrder]);
+  }, [order]);
 
   const onClickPay = async (res: TGooglePayRes) => {
     console.log(res);

@@ -12,9 +12,8 @@ interface IProps {
 }
 
 const ProductOrderBtn: FC<IProps> = ({ product }) => {
-  const { orders, onEditOrder } = useOrder();
+  const { order, onEditOrder } = useOrder();
   const [count, setCount] = useState(0);
-  const [order, setOrder] = useState<IOrder | null>(null);
 
   const onEditProductFromOrder = async (to: number) => {
     if (order) {
@@ -30,17 +29,6 @@ const ProductOrderBtn: FC<IProps> = ({ product }) => {
 
       const products = newProductList.filter((el) => el.count > 0);
       await onEditOrder(order._id, { products } as IOrder);
-    } else {
-      const curOrder = orders.find((el) => el.status === 'not_paid');
-      if (!curOrder) return;
-
-      const newProductList = [
-        ...curOrder?.products,
-        { product: product._id, count: 1 },
-      ];
-      const products = newProductList.filter((el) => el.count > 0);
-
-      await onEditOrder(curOrder._id, { products } as IOrder);
     }
   };
 
@@ -58,19 +46,11 @@ const ProductOrderBtn: FC<IProps> = ({ product }) => {
   );
 
   useEffect(() => {
-    const curOrder = orders.find((item) => {
-      const curProduct = item.products.find(
-        (el) => el.product === product?._id
-      );
-      curProduct && setCount(curProduct.count);
-      return curProduct;
-    });
-
-    setOrder(
-      curOrder ? curOrder : null
-      // : orders.find((el) => el.status === 'not_paid') || null
+    const curProduct = order?.products.find(
+      (el) => el.product === product?._id
     );
-  }, [orders, product]);
+    curProduct && setCount(curProduct.count);
+  }, [order, product]);
 
   return (
     <div className={s.container}>

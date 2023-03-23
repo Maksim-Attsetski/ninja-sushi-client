@@ -1,16 +1,13 @@
 import React, { FC, memo, useEffect, useMemo } from 'react';
-import { List } from 'UI';
-import { IOrder } from 'widgets/Order';
-import useOrder from 'widgets/Order/hooks/useOrder';
-import { Product, useProduct } from 'widgets/Product';
+
+import { useOrder } from 'widgets/Order';
 import { useUsers } from 'widgets/User';
 import Order from '../Order';
 
 import s from './OrderList.module.scss';
 
 const OrderList: FC = () => {
-  const { orders, onGetOrderList } = useOrder();
-  // const {} = useProduct();
+  const { order, onGetOrderList } = useOrder();
   const { user } = useUsers();
 
   useEffect(() => {
@@ -19,10 +16,10 @@ const OrderList: FC = () => {
     }
   }, [user?._id]);
 
-  return (
+  return order ? (
     <div className='container'>
-      <List data={orders} renderItem={(el: IOrder) => <Order order={el} />} />
+      <Order order={order} />
     </div>
-  );
+  ) : null;
 };
 export default memo(OrderList);
