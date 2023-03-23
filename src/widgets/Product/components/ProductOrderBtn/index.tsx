@@ -6,6 +6,7 @@ import { Button } from 'UI';
 import s from './ProductOrderBtn.module.scss';
 import { IOrder, useOrder } from 'widgets/Order';
 import { IProduct, useProduct } from 'widgets/Product';
+import { useMessage } from 'widgets/Message';
 
 interface IProps {
   product: IProduct;
@@ -14,6 +15,7 @@ interface IProps {
 const ProductOrderBtn: FC<IProps> = ({ product }) => {
   const { order, onEditOrder } = useOrder();
   const [count, setCount] = useState(0);
+  const { onSuccessMsg } = useMessage();
 
   const onEditProductFromOrder = async (to: number) => {
     if (order) {
@@ -29,6 +31,8 @@ const ProductOrderBtn: FC<IProps> = ({ product }) => {
 
       const products = newProductList.filter((el) => el.count > 0);
       await onEditOrder(order._id, { products } as IOrder);
+
+      to > 0 && onSuccessMsg('Товар добавлен в корзину');
     }
   };
 

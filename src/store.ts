@@ -6,6 +6,7 @@ import { userReducer } from 'widgets/User';
 import { authReducer } from 'widgets/Auth';
 import { productReducer } from 'widgets/Product';
 import { newsReducer } from 'widgets/News';
+import { messageReducer } from 'widgets/Message';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -14,6 +15,7 @@ const rootReducer = combineReducers({
   order: orderReducer,
   app: appReducer,
   news: newsReducer,
+  msg: messageReducer,
 });
 
 export const store = configureStore({

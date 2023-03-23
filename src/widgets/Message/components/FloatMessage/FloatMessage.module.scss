@@ -1,0 +1,13 @@
+@import 'shared/all.scss';
+
+.container {
+  @apply fixed z-[100] top-10 px-5 py-4 rounded-xl bg-white text-lg;
+  filter: drop-shadow(1px 1px 1px #33333370);
+
+  &.success {
+    color: $accent;
+  }
+  &.error {
+    color: $error;
+  }
+}
