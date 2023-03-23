@@ -31,7 +31,7 @@ const ProductOrderBtn: FC<IProps> = ({ product }) => {
       const products = newProductList.filter((el) => el.count > 0);
       await onEditOrder(order._id, { products } as IOrder);
     } else {
-      const curOrder = orders.find((el) => el.status === 'not paid');
+      const curOrder = orders.find((el) => el.status === 'not_paid');
       if (!curOrder) return;
 
       const newProductList = [
@@ -68,7 +68,7 @@ const ProductOrderBtn: FC<IProps> = ({ product }) => {
 
     setOrder(
       curOrder ? curOrder : null
-      // : orders.find((el) => el.status === 'not paid') || null
+      // : orders.find((el) => el.status === 'not_paid') || null
     );
   }, [orders, product]);
 

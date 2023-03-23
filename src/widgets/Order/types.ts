@@ -1,7 +1,7 @@
 import { IProduct } from 'widgets/Product';
 
 export type TPaymentsType = 'cash' | 'card' | 'card courier' | 'card courier';
-export type TOrderStatus = 'not paid' | 'paid';
+export type TOrderStatus = 'not_paid' | 'paid';
 export type TOrder = IOrder | null;
 
 export interface ICreateOrder<P = IProduct | string, U = string> {

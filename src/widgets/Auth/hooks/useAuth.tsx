@@ -64,7 +64,7 @@ const useAuth = () => {
       setAuth(data);
       if (data?._id) {
         await onGetOrderList({
-          filter: `authorId==${data?._id};status==not paid`,
+          filter: `authorId==${data?._id};status==not_paid`,
         });
       }
     } catch (error) {

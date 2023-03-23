@@ -3,34 +3,51 @@ import { IQuery } from 'shared';
 import { ICreateOrder, IOrder, OrderService } from '..';
 
 const useOrder = () => {
-  const { orders } = useTypedSelector((state) => state.order);
+  const { orders, history, totalPrice } = useTypedSelector(
+    (state) => state.order
+  );
   const { action } = useActions();
 
-  const onGetOrderList = async (query?: IQuery) => {
+  const onGetOrderList = async (query?: IQuery, isHistory?: boolean) => {
     const response = await OrderService.getAll(query || {});
 
-    action.setOrdersAC(response);
+    isHistory ? action.setHistoryAC(response) : action.setOrdersAC(response);
   };
 
-  const onAddOrder = async (newOrder: ICreateOrder) => {
+  const onAddOrder = async (newOrder: ICreateOrder, isHistory?: boolean) => {
     const response = await OrderService.create(newOrder);
 
-    action.addOrderAC(response);
+    isHistory ? action.addHistoryAC(response) : action.addOrderAC(response);
   };
 
-  const onEditOrder = async (_id: string, order: IOrder) => {
+  const onEditOrder = async (
+    _id: string,
+    order: IOrder,
+    isHistory?: boolean
+  ) => {
     await OrderService.edit(_id, order);
 
-    action.editOrderAC({ ...order, _id });
+    const newOrder = { ...order, _id };
+    isHistory ? action.editHistoryAC(newOrder) : action.editOrderAC(newOrder);
   };
 
-  const onDeleteOrder = async (_id: string) => {
+  const onDeleteOrder = async (_id: string, isHistory?: boolean) => {
     const response = await OrderService.delete(_id);
 
-    action.deleteOrderAC(response);
+    isHistory
+      ? action.deleteHistoryAC(response)
+      : action.deleteOrderAC(response);
   };
 
-  return { orders, onGetOrderList, onAddOrder, onEditOrder, onDeleteOrder };
+  return {
+    orders,
+    history,
+    totalPrice,
+    onGetOrderList,
+    onAddOrder,
+    onEditOrder,
+    onDeleteOrder,
+  };
 };
 
 export default useOrder;

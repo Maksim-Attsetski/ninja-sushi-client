@@ -15,7 +15,7 @@ const OrderList: FC = () => {
 
   useEffect(() => {
     if (user?._id) {
-      onGetOrderList({ filter: `authorId=${user?._id}` });
+      onGetOrderList({ filter: `authorId==${user?._id};status==not_paid` });
     }
   }, [user?._id]);
 

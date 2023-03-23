@@ -11,7 +11,7 @@ const OrderSumma: FC = () => {
   const { products } = useProduct();
 
   const curOrder = useMemo(
-    () => orders.find((el) => el.status === 'not paid'),
+    () => orders.find((el) => el.status === 'not_paid'),
     [orders]
   );
 

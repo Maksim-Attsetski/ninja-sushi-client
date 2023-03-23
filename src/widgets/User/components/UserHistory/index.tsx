@@ -1,23 +1,24 @@
-import React, { FC, memo, useMemo } from 'react';
+import React, { FC, memo, useEffect, useMemo } from 'react';
 import { List } from 'UI';
 import { IOrder, useOrder } from 'widgets/Order';
+import { useUsers } from 'widgets/User';
 
 import s from './UserHistory.module.scss';
 
 const UserHistory: FC = () => {
-  const { orders } = useOrder();
+  const { history, onGetOrderList } = useOrder();
+  const { user } = useUsers();
 
-  const curOrders = useMemo(
-    () => orders.filter((el) => el.status === 'paid'),
-    [orders]
-  );
+  useEffect(() => {
+    onGetOrderList({ filter: `authorId==${user?._id};status==paid` }, true);
+  }, [user?._id]);
 
   return (
     <div>
       <div>UserHistory</div>
 
       <List
-        data={curOrders}
+        data={history}
         renderItem={(el: IOrder) => <div>{el.price}</div>}
         emptyElement={
           <>
