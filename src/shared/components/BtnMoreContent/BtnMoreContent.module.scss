@@ -4,6 +4,10 @@
   @apply w-full flex justify-center;
   .btn {
     @apply bg-white px-16;
+    transition: all linear 0.3s;
     color: $accent;
+    &.disable {
+      @apply scale-0;
+    }
   }
 }

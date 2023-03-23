@@ -23,6 +23,7 @@ interface IProps {
   setFilteredProducts: Dispatch<SetStateAction<IProduct[]>>;
   limit: number;
   page: number;
+  setIsLastPage: Dispatch<SetStateAction<boolean>>;
 }
 
 const enum sortOptionsText {
@@ -61,6 +62,7 @@ const ProductFilter: FC<IProps> = ({
   setFilteredProducts,
   limit,
   page,
+  setIsLastPage,
 }) => {
   const { getProducts } = useProduct();
   const [sortOptions, setSortOptions] = useState<ISortOptions>({
@@ -85,7 +87,10 @@ const ProductFilter: FC<IProps> = ({
     };
     const products = await getProducts(query, true);
 
-    products && setFilteredProducts(products.data);
+    if (products) {
+      setIsLastPage(products.last);
+      setFilteredProducts(products.data);
+    }
   };
 
   const onChangeSortOption = (newValue: sortOptionsText) => {

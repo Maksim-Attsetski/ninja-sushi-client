@@ -5,12 +5,17 @@ import s from './BtnMoreContent.module.scss';
 
 interface IProps {
   plusLimit: () => void;
+  isLast?: boolean;
 }
 
-const BtnMoreContent: FC<IProps> = ({ plusLimit }) => {
+const BtnMoreContent: FC<IProps> = ({ plusLimit, isLast = false }) => {
   return (
     <div className={s.container}>
-      <Button text='Показать больше' className={s.btn} onClick={plusLimit} />
+      <Button
+        text='Показать больше'
+        className={[s.btn, isLast && s.disable].join(' ')}
+        onClick={plusLimit}
+      />
     </div>
   );
 };
