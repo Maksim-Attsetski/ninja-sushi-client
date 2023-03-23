@@ -9,19 +9,20 @@ import s from './NewsList.module.scss';
 
 interface IProps {
   query?: IQuery;
+  searchNews?: INews[];
 }
 
-const NewsList: FC<IProps> = ({ query = {} }) => {
+const NewsList: FC<IProps> = ({ query = {}, searchNews = null }) => {
   const { onGetNews, news } = useNews();
 
   useEffect(() => {
-    onGetNews(query);
+    !searchNews && onGetNews(query);
   }, []);
 
   return (
     <div>
       <List
-        data={news}
+        data={searchNews ?? news}
         renderItem={(el) => <NewsItem news={el} />}
         containerClassname={s.list}
         itemClassname={s.item}

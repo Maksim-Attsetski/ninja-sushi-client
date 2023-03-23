@@ -1,0 +1,12 @@
+
+.container {
+  @apply relative my-3;
+  width: 300px;
+  
+  .icon {
+    @apply absolute cursor-pointer top-3 left-2 w-7;
+  }
+  .input {
+    @apply pl-12;
+  }
+}

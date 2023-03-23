@@ -2,6 +2,7 @@
 import sushiDefault from './img/sushi.png';
 import noPhoto from './img/no-photo.jpg';
 import logo from './img/logo.png';
+import search from './img/search.png';
 import appetizersIcon from './img/appetizers-icon.png';
 import drinksIcon from './img/drinks-icon.png';
 import rollsIcon from './img/rolls-icon.png';
@@ -15,6 +16,7 @@ import MinusSvg from './svg/MinusSvg';
 
 export const assets = {
   siderIcon: '',
+  search,
   logo,
   sushiDefault,
   noPhoto,

@@ -48,7 +48,6 @@ const CategoryPage: FC = (props) => {
           <BtnMoreContent plusLimit={plusLimit} isLast={isLastPage} />
         </>
       )}
-      {/* {curProductType?.type && <ProductList type={curProductType?.type} />} */}
     </div>
   );
 };

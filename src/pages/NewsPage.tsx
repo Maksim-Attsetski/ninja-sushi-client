@@ -1,12 +1,14 @@
-import React, { FC, memo } from 'react';
-import { NewsList } from 'widgets/News';
+import React, { FC, memo, useState } from 'react';
+import { Search, NewsList, INews } from 'widgets/News';
 
 const NewsPage: FC = () => {
+  const [searchNews, setSearchNews] = useState<INews[]>([]);
+
   return (
     <div className='container'>
-      <div>NewsPage</div>
+      <Search setSearchNews={setSearchNews} />
 
-      <NewsList />
+      <NewsList searchNews={searchNews} />
     </div>
   );
 };
