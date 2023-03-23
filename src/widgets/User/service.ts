@@ -25,8 +25,6 @@ class UserService {
         params: { isFull },
       });
 
-      console.log('response.data', response.data);
-
       return response.data;
     } catch (error) {
       const err = getError(error);

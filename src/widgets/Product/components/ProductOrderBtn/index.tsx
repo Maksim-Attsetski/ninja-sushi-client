@@ -53,12 +53,12 @@ const ProductOrderBtn: FC<IProps> = ({ product }) => {
     const curProduct = order?.products.find(
       (el) => el.product === product?._id
     );
-    curProduct && setCount(curProduct.count);
+    setCount(curProduct ? curProduct.count : 0);
   }, [order, product]);
 
   return (
     <div className={s.container}>
-      {count > 0 && order ? (
+      {count > 0 ? (
         <>
           <Button
             small

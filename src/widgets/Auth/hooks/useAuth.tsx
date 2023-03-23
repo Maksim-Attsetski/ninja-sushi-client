@@ -12,8 +12,6 @@ const useAuth = () => {
   const { onGetOrderList } = useOrder();
 
   const setAuth = (data: IUser<string | IIngredient> | null) => {
-    console.log('data', data);
-
     action.setUserAC(data);
     action.setAuthAC(!!data);
   };

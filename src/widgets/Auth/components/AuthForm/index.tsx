@@ -87,7 +87,6 @@ const AuthForm: FC = () => {
           <GoogleLogin
             useOneTap
             onSuccess={onSuccess}
-            onError={() => console.log('error')}
             locale='ru'
             text='continue_with'
           />
