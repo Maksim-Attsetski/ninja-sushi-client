@@ -1,3 +1,4 @@
+import { TGeo } from 'shared';
 import { IIngredient } from 'widgets/Product';
 
 type TUserProviders = 'pass' | 'google';
@@ -10,12 +11,12 @@ export interface ILogin {
 }
 export interface ISignup extends ILogin {
   name: string;
+  location: TGeo;
 }
 
 export interface IUser<T> extends ISignup {
   _id: string;
   createdAt: number;
-  location: { latitude: number; longitude: number };
   favorite_products_ids: T[];
   phone: string;
   providers: TUserProviders[];

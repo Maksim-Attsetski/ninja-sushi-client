@@ -31,10 +31,10 @@ const AuthForm: FC = () => {
     if (isLogin) {
       await onLogin(loginDto);
     } else {
-      const signupdto: ISignup = {
+      const signupdto = {
         ...loginDto,
         name: name.props.value,
-      };
+      } as ISignup;
 
       await onSignup(signupdto);
     }

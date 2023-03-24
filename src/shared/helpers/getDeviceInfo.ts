@@ -7,31 +7,28 @@ export interface IGeo {
 
 export type TGeo = IGeo | null;
 
-export interface IDeviceInfo {
-  geo: TGeo;
-  userAgent: string;
-}
-
-export const getDeviceInfo = () => {
-  const info: IDeviceInfo = { geo: null, userAgent: '' };
-
-  if (navigator.geolocation) {
+export const getDeviceInfo = (
+  setGeo?: (geo: TGeo) => void,
+  setUserAgent?: (val: string) => void
+) => {
+  if (navigator.geolocation && setGeo) {
     navigator.geolocation.getCurrentPosition(
-      (position: GeolocationPosition) => {
-        info.geo = {
-          latitude: position.coords.latitude,
-          longitude: position.coords.longitude,
-        };
+      ({ coords }: GeolocationPosition) => {
+        const geo = { latitude: coords.latitude, longitude: coords.longitude };
+        setGeo(geo);
+        Logger.log('Device geolocation', geo);
+      },
+      (err) => {
+        console.log(err);
       }
     );
   }
 
-  if (navigator.userAgent) {
+  if (navigator.userAgent && setUserAgent) {
     const match = /\(([^)]+)\)/.exec(navigator.userAgent);
 
-    info.userAgent = match ? match[1] : navigator.userAgent;
+    const newUserAgent = match ? match[1] : navigator.userAgent;
+    setUserAgent(newUserAgent);
+    Logger.log('Device user agent', newUserAgent);
   }
-
-  Logger.log('Device info', info);
-  return info;
 };

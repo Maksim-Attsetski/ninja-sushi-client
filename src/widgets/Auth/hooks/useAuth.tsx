@@ -1,13 +1,13 @@
 import { CredentialResponse } from '@react-oauth/google';
 import { useActions, useTypedSelector } from 'hooks';
-import { useNews } from 'widgets/News';
 import { useOrder } from 'widgets/Order';
-import { IIngredient, useProduct } from 'widgets/Product';
+import { IIngredient } from 'widgets/Product';
 import { ILogin, ISignup, IUser } from 'widgets/User';
 import { authService } from '..';
 
 const useAuth = () => {
   const { isAuth } = useTypedSelector((state) => state.auth);
+  const { location } = useTypedSelector((state) => state.app);
   const { action } = useActions();
   const { onGetOrderList } = useOrder();
 
@@ -18,7 +18,7 @@ const useAuth = () => {
 
   const onSignup = async (signupDto: ISignup) => {
     try {
-      const data = await authService.login(signupDto);
+      const data = await authService.signup({ ...signupDto, location });
       setAuth(data);
     } catch (error) {
       throw error;
@@ -34,11 +34,12 @@ const useAuth = () => {
     }
   };
 
-  const onAuthByGoogle = async (payload: CredentialResponse) => {
-    if (!payload?.credential) return;
+  const onAuthByGoogle = async ({ credential }: CredentialResponse) => {
+    if (!credential) return;
 
     try {
-      const data = await authService.authByGoogle(payload?.credential);
+      const newUser = { credential, location };
+      const data = await authService.authByGoogle(newUser);
       setAuth(data);
     } catch (error) {
       throw error;

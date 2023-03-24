@@ -6,6 +6,7 @@ import { actions as authActions } from 'widgets/Auth';
 import { actions as userActions } from 'widgets/User';
 import { actions as orderActions } from 'widgets/Order';
 import { actions as newsActions } from 'widgets/News';
+import { actions as appActions } from 'widgets/App';
 import { actions as msgActions } from 'widgets/Message';
 
 const useActions = () => {
@@ -16,6 +17,7 @@ const useActions = () => {
     ...authActions,
     ...userActions,
     ...msgActions,
+    ...appActions,
     ...newsActions,
     ...orderActions,
   };
