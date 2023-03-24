@@ -13,6 +13,7 @@ import {
 } from 'widgets/User';
 import { useProduct } from 'widgets/Product';
 import { useNews } from 'widgets/News';
+import { getDeviceInfo } from 'shared';
 
 const Navigation: FC = () => {
   const { isAuth, onRefresh } = useAuth();
@@ -30,6 +31,7 @@ const Navigation: FC = () => {
 
   useEffect(() => {
     onGetAll();
+    getDeviceInfo();
   }, []);
 
   return (
@@ -38,17 +40,17 @@ const Navigation: FC = () => {
         <Route element={<screens.Notfound />} path={routeNames.Notfound} />
         <Route path='/' element={<Layout />}>
           <Route element={<screens.Home />} path={routeNames.Home} />
+          <Route element={<screens.Delivery />} path={routeNames.Delivery} />
+          <Route element={<screens.About />} path={routeNames.About} />
+          <Route element={<screens.News />} path={routeNames.News} />
+          <Route
+            element={<screens.NewsItem />}
+            path={routeNames.News + '/:id'}
+          />
         </Route>
         {isAuth ? (
           <Route path='/' element={<Layout />}>
-            <Route element={<screens.About />} path={routeNames.About} />
-            <Route element={<screens.Delivery />} path={routeNames.Delivery} />
             <Route element={<screens.Liked />} path={routeNames.Liked} />
-            <Route element={<screens.News />} path={routeNames.News} />
-            <Route
-              element={<screens.NewsItem />}
-              path={routeNames.News + '/:id'}
-            />
             <Route element={<screens.Order />} path={routeNames.Order} />
             <Route element={<screens.Profile />} path={routeNames.Profile}>
               <Route
