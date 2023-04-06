@@ -5,6 +5,7 @@ import { useUsers } from 'widgets/User';
 import Order from '../Order';
 
 import s from './OrderList.module.scss';
+import { useTypedSelector } from 'hooks';
 
 const OrderList: FC = () => {
   const { order, onGetOrderList } = useOrder();

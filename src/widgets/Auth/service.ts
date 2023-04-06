@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { $api, baseURL, getError, Logger, TGeo, tokenName } from 'shared';
+import { $api, baseURL, getError, Logger, tokenName } from 'shared';
 import { ILogin, ISignup, IUser } from 'widgets/User';
 
 export interface IResponse {
@@ -44,9 +44,9 @@ class AuthService {
     }
   }
 
-  async authByGoogle(data: { credential: string; location: TGeo }) {
+  async authByGoogle(credential: string) {
     try {
-      const response = await $api.post<IResponse>('auth/google', data);
+      const response = await $api.post<IResponse>('auth/google', credential);
 
       this.setToken(response.data);
       Logger.log('Success API auth by Google', response.data);

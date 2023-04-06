@@ -13,18 +13,13 @@ import {
 } from 'widgets/User';
 import { useProduct } from 'widgets/Product';
 import { useNews } from 'widgets/News';
-import { getDeviceInfo } from 'shared';
-import { useActions } from 'hooks';
 
 const Navigation: FC = () => {
   const { isAuth, onRefresh } = useAuth();
-  const { action } = useActions();
   const { getProducts } = useProduct();
   const { onGetNews } = useNews();
 
   const onGetAll = async () => {
-    getDeviceInfo(action.setLocationAC, action.setUserAgentAC);
-
     await Promise.all([
       getProducts({ dependencies: true }),
       onGetNews({ sort: 'createdAt==desc', limit: 10 }),

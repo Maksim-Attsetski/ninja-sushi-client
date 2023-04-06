@@ -7,7 +7,6 @@ import { authService } from '..';
 
 const useAuth = () => {
   const { isAuth } = useTypedSelector((state) => state.auth);
-  const { location } = useTypedSelector((state) => state.app);
   const { action } = useActions();
   const { onGetOrderList } = useOrder();
 
@@ -18,7 +17,7 @@ const useAuth = () => {
 
   const onSignup = async (signupDto: ISignup) => {
     try {
-      const data = await authService.signup({ ...signupDto, location });
+      const data = await authService.signup(signupDto);
       await onGetUserOrder(data);
 
       setAuth(data);
@@ -40,8 +39,7 @@ const useAuth = () => {
     if (!credential) return;
 
     try {
-      const newUser = { credential, location };
-      const data = await authService.authByGoogle(newUser);
+      const data = await authService.authByGoogle(credential);
       await onGetUserOrder(data);
 
       setAuth(data);

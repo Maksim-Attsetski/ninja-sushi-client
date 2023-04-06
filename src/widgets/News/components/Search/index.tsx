@@ -30,8 +30,6 @@ const Search: FC<IProps> = ({ setSearchNews, containerClassName = '' }) => {
   const [activeTags, setActiveTags] = useState<string>(all);
 
   async function onSearchNews() {
-    console.log(activeTags);
-
     const query: IQuery = {
       search: 'title==' + value,
       filter: activeTags === all ? '' : `tag_contains_${activeTags}`,

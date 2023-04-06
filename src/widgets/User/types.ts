@@ -1,9 +1,18 @@
-import { TGeo } from 'shared';
 import { IIngredient } from 'widgets/Product';
 
 type TUserProviders = 'pass' | 'google';
 export type TUserWithGeneric = IUser<string | IIngredient>;
 export type TUser = TUserWithGeneric | null;
+
+export interface ILocation {
+  city: string;
+  country: string;
+  street: string;
+  home: string;
+  entrance: number; // подъезд
+  floor: number; // этаж
+  flat: number; // кв
+}
 
 export interface ILogin {
   email: string;
@@ -11,7 +20,7 @@ export interface ILogin {
 }
 export interface ISignup extends ILogin {
   name: string;
-  location: TGeo;
+  location: ILocation[];
 }
 
 export interface IUser<T> extends ISignup {
