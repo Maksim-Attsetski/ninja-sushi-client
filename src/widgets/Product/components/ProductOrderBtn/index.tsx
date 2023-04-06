@@ -18,6 +18,8 @@ const ProductOrderBtn: FC<IProps> = ({ product }) => {
   const { onSuccessMsg } = useMessage();
 
   const onEditProductFromOrder = async (to: number) => {
+    console.log(to, order);
+
     if (order) {
       const isExist = order.products.find((el) => el.product === product._id);
 

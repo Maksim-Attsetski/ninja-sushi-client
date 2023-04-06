@@ -19,6 +19,8 @@ const useAuth = () => {
   const onSignup = async (signupDto: ISignup) => {
     try {
       const data = await authService.signup({ ...signupDto, location });
+      await onGetUserOrder(data);
+
       setAuth(data);
     } catch (error) {
       throw error;
@@ -40,6 +42,8 @@ const useAuth = () => {
     try {
       const newUser = { credential, location };
       const data = await authService.authByGoogle(newUser);
+      await onGetUserOrder(data);
+
       setAuth(data);
     } catch (error) {
       throw error;
@@ -61,13 +65,17 @@ const useAuth = () => {
       const data = await authService.refresh();
 
       setAuth(data);
-      if (data?._id) {
-        await onGetOrderList({
-          filter: `authorId==${data?._id};status==not_paid`,
-        });
-      }
+      await onGetUserOrder(data);
     } catch (error) {
       throw error;
+    }
+  };
+
+  const onGetUserOrder = async (data: IUser<string>) => {
+    if (data?._id) {
+      await onGetOrderList({
+        filter: `authorId==${data?._id};status==not_paid`,
+      });
     }
   };
 

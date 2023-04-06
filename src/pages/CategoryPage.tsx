@@ -15,7 +15,7 @@ import {
   useProduct,
 } from 'widgets/Product';
 
-const CategoryPage: FC = (props) => {
+const CategoryPage: FC = () => {
   const type = useParams()?.type as TProductType;
   const [isLastPage, setIsLastPage] = useState<boolean>(true);
 
@@ -45,7 +45,10 @@ const CategoryPage: FC = (props) => {
             filteredProducts={filteredProducts}
           />
           <Gap y={10} />
-          <BtnMoreContent plusLimit={plusLimit} isLast={isLastPage} />
+          <BtnMoreContent
+            plusLimit={plusLimit}
+            isLast={isLastPage || filteredProducts.length === 0}
+          />
         </>
       )}
     </div>

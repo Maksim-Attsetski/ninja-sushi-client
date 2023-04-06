@@ -1,6 +1,6 @@
 import { IProduct } from 'widgets/Product';
 
-export type TPaymentsType = 'cash' | 'card' | 'card courier' | 'card courier';
+export type TPaymentsType = 'cash' | 'card' | 'card courier' | 'cash courier';
 export type TOrderStatus = 'not_paid' | 'paid';
 export type TOrder = IOrder | null;
 

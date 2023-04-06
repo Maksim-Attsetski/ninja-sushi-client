@@ -1,5 +1,10 @@
+@import 'shared/all.scss';
 
 .container {
+  @apply flex flex-wrap justify-between items-center;
+}
+
+.searchContainer {
   @apply relative my-3;
   width: 300px;
   
@@ -8,5 +13,17 @@
   }
   .input {
     @apply pl-12;
+  }
+}
+
+.tags {
+  @apply flex flex-wrap gap-x-2 gap-y-3;
+  &Item {
+    @apply py-2 px-5 rounded-lg cursor-pointer;
+    transition: all linear 0.2s;
+    &.active {
+      background: $secondary;
+      color: #fff;
+    }
   }
 }
