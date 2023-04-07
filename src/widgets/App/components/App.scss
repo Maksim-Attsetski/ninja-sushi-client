@@ -21,6 +21,10 @@
 
 body {
   background: #F5F5F7;
+  transition: all linear 0.2s;
+  &.lock {
+    overflow: hidden;
+  }
 }
 
 a {

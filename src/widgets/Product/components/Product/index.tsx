@@ -8,6 +8,9 @@ import { useUsers } from 'widgets/User';
 import s from './Product.module.scss';
 import ProductOrderBtn from '../ProductOrderBtn';
 import { getPhoto } from 'shared';
+import { useAuth } from 'widgets/Auth';
+import { useNavigate } from 'react-router-dom';
+import { routeNames } from 'navigation/types';
 
 interface IProps {
   product: IProduct;
@@ -15,6 +18,8 @@ interface IProps {
 
 const Product: FC<IProps> = ({ product }) => {
   const { user, onLikeProduct, getIds } = useUsers();
+  const { isAuth } = useAuth();
+  const navigate = useNavigate();
 
   const productWeightType = useMemo(
     () => (product.type === 'drinks' ? 'мл' : 'г'),
@@ -44,6 +49,9 @@ const Product: FC<IProps> = ({ product }) => {
   );
 
   const onClickLike = async () => {
+    if (!isAuth) {
+      navigate(routeNames.Auth);
+    }
     if (product?._id) {
       await onLikeProduct(product._id);
     }
@@ -68,12 +76,9 @@ const Product: FC<IProps> = ({ product }) => {
             <span className={s.infoBlockCurrency}>byn</span>
           </div>
           <div className={s.infoBlockButtons}>
-            <Button
-              onClick={onClickLike}
-              text={<assets.LikeSvg isLiked={inLiked} />}
-              auth
-              className={s.infoBlockLike}
-            />
+            <div onClick={onClickLike} className={s.infoBlockLike}>
+              <assets.LikeSvg isLiked={inLiked} />
+            </div>
             <ProductOrderBtn product={product} />
           </div>
         </div>

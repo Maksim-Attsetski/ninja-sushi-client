@@ -3,7 +3,7 @@ import { $api, baseURL, getError, Logger, tokenName } from 'shared';
 import { ILogin, ISignup, IUser } from 'widgets/User';
 
 export interface IResponse {
-  user: IUser<string>;
+  user: IUser;
   tokens: string;
 }
 
@@ -46,12 +46,12 @@ class AuthService {
 
   async authByGoogle(credential: string) {
     try {
-      const response = await $api.post<IResponse>('auth/google', credential);
+      const res = await $api.post<IResponse>('auth/google', { credential });
 
-      this.setToken(response.data);
-      Logger.log('Success API auth by Google', response.data);
+      this.setToken(res.data);
+      Logger.log('Success API auth by Google', res.data);
 
-      return response.data.user;
+      return res.data.user;
     } catch (error) {
       const err = getError(error);
       Logger.error(err?.message);

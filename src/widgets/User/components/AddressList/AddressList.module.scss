@@ -1,0 +1,40 @@
+@import 'shared/all.scss';
+
+.locations {
+  @apply flex flex-col gap-3;
+}
+
+.geo {
+  @apply py-2 px-4 mb-1 rounded-xl bg-white flex gap-3 justify-between items-center;
+
+  &Info {
+    &Title {
+      @apply font-bold;
+    }
+    &Text {
+      color: #333;
+    }
+  }
+  &Buttons {
+    @apply flex flex-wrap gap-2 items-center;
+
+    &Delete {
+      @apply cursor-pointer;
+    }
+
+    &Circle {
+      @apply w-5 h-5 rounded-full flex justify-center items-center;
+      border: 2px solid $secondary;
+      span {
+        @apply w-3 h-3 rounded-full scale-0 transition-all;
+        background-color: $secondary;
+      }
+
+      .active {
+        span {
+          @apply scale-100;
+        }
+      }
+    }
+  }
+}

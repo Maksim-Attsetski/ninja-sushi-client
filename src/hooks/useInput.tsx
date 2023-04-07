@@ -1,11 +1,20 @@
-import { ChangeEvent, useState } from 'react';
+import {
+  ChangeEvent,
+  DetailedHTMLProps,
+  InputHTMLAttributes,
+  useState,
+} from 'react';
 
 type TEvent = ChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 interface IUserInput {
   (
     defaultValue?: string,
     placeholder?: string,
-    onChangeCallback?: ((value: string) => string) | null
+    onChangeCallback?: ((value: string) => string) | null,
+    props?: DetailedHTMLProps<
+      InputHTMLAttributes<HTMLInputElement>,
+      HTMLInputElement
+    >
   ): {
     props: {
       value: string;
@@ -19,7 +28,8 @@ interface IUserInput {
 const useInput: IUserInput = (
   defaultValue = '',
   placeholder = '',
-  onChangeCallback = null
+  onChangeCallback = null,
+  props
 ) => {
   const [value, setValue] = useState(defaultValue);
 
@@ -39,6 +49,7 @@ const useInput: IUserInput = (
 
   return {
     props: {
+      ...props,
       value,
       onChange,
       placeholder,

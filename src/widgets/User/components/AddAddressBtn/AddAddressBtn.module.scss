@@ -1,0 +1,5 @@
+@import 'shared/all.scss';
+
+.container {
+  @apply flex gap-4;
+}

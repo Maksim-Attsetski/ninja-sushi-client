@@ -73,9 +73,7 @@
       @apply flex items-center justify-center gap-x-2;
     }
     &Like {
-      background: #F5F5F7;
-      border-radius: 12px;
-      padding: 8px 12px;
+      @apply transition-all cursor-pointer;
     }
   }
 }

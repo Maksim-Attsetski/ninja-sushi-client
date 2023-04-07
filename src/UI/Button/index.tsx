@@ -21,13 +21,13 @@ interface IProps
   > {
   text: string | ReactElement | ReactNode;
   auth?: boolean;
-  colorType?: 'white' | 'secondary';
+  colorType?: 'white' | 'secondary' | 'main' | 'outline-main' | 'outline-error';
   small?: boolean;
 }
 const Button: FC<IProps> = ({
   text,
   auth = false,
-  colorType = '',
+  colorType = 'main',
   onClick,
   className,
   small = false,

@@ -7,10 +7,12 @@ import Title from './Title';
 import AudioToTextConverter from './AudioToTextConverter';
 import Input from './Input';
 import Button from './Button';
+import Modal from './Modal';
 
 export * from './Select';
 
 export {
+  Modal,
   Input,
   AudioToTextConverter,
   Title,

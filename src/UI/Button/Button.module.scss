@@ -1,24 +1,42 @@
 @import 'shared/all.scss';
 
 .button {
-  background-color: $accent;
-  @apply transition-all text-white text-center font-medium py-3 px-6 text-base rounded-xl;
+  @apply transition-all text-center font-medium py-3 px-6 text-base rounded-xl;
   
   &:active {
     transform: translateY(2px);
   }
   
-  &.small {
-    @apply py-2 px-4;
+  &.main {
+    color: #fff;
+    background-color: $accent;
   }
   
   &.white {
     @apply py-2 px-4 bg-white;
-    color: #333;
     border: 2px solid #c1bdbd;
   }
+
   &.secondary {
-    @apply py-2 px-4;
+    color: #fff;
     background-color: $secondary;
+  }
+
+  &.outline-main,
+  &.outline-secondary {
+    background-color: #F5F5F7;
+    padding: 16px 24px;
+  }
+
+  &.outline-main {
+    color: $accent;
+  }
+
+  &.outline-error {
+    color: $error;
+  }
+
+  &.small {
+    @apply py-2 px-4;
   }
 }

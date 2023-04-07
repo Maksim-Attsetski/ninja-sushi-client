@@ -61,24 +61,28 @@ const _Header: FC<IProps> = ({ setIsOpen, isOpen }) => {
               onClick={() => onOpen(routeNames.About)}
               text='🔕'
               auth
+              small
               colorType='white'
             />
             <Button
               onClick={() => onOpen(routeNames.Liked)}
               text='❤️'
               auth
+              small
               colorType='white'
             />
             <Button
               onClick={() => onOpen(routeNames.Profile)}
               text='👤'
               auth
+              small
               colorType='white'
             />
             <Button
               onClick={() => onOpen(routeNames.Order)}
               text={'Корзина ' + orderCount}
               auth
+              small
               colorType='secondary'
             />
           </div>

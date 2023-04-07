@@ -1,3 +1,4 @@
+import AddAddressBtn from './components/AddAddressBtn';
 import EditProfile from './components/EditProfile';
 import ProfileSider from './components/ProfileSider';
 import UserDelivery from './components/UserDelivery';
@@ -15,6 +16,7 @@ export {
   ProfileSider,
   UserHistory,
   UserDelivery,
+  AddAddressBtn,
   UserTheme,
   useUsers,
   userReducer,

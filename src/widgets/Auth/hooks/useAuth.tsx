@@ -69,7 +69,7 @@ const useAuth = () => {
     }
   };
 
-  const onGetUserOrder = async (data: IUser<string>) => {
+  const onGetUserOrder = async (data: IUser) => {
     if (data?._id) {
       await onGetOrderList({
         filter: `authorId==${data?._id};status==not_paid`,

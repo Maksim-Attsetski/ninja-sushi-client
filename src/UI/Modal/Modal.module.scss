@@ -1,0 +1,15 @@
+
+
+.modal {
+  background-color: #00000060;
+  transition: all linear 0.25s;
+  @apply scale-0 rounded-full fixed z-50 top-0 left-0 w-full h-screen grid place-items-center;
+  &.active {
+    @apply scale-100 rounded-none;
+  }
+  
+  .content {
+    width: clamp(300px, 100vw, 450px);
+    @apply bg-white py-3 px-5 rounded-lg;
+  }
+}

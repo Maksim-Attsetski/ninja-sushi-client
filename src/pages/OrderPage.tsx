@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { Gap, Title } from 'UI';
 import { OrderList, OrderSumma } from 'widgets/Order';
+import { AddAddressBtn } from 'widgets/User';
 
 const OrderPage: FC = () => {
   return (
@@ -10,6 +11,7 @@ const OrderPage: FC = () => {
       <Gap y={10} />
       <Gap y={10} />
       <OrderList />
+      <AddAddressBtn />
       <OrderSumma />
     </div>
   );

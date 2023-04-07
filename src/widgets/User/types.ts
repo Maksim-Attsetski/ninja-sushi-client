@@ -23,7 +23,7 @@ export interface ISignup extends ILogin {
   location: ILocation[];
 }
 
-export interface IUser<T> extends ISignup {
+export interface IUser<T = string> extends ISignup {
   _id: string;
   createdAt: number;
   favorite_products_ids: T[];
