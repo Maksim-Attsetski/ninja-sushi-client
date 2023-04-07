@@ -14,6 +14,13 @@ import { useNavigate } from 'react-router-dom';
 
 import s from './Button.module.scss';
 
+export type TButtonColors =
+  | 'white'
+  | 'secondary'
+  | 'main'
+  | 'outline-main'
+  | 'outline-error';
+
 interface IProps
   extends DetailedHTMLProps<
     ButtonHTMLAttributes<HTMLButtonElement>,
@@ -21,7 +28,7 @@ interface IProps
   > {
   text: string | ReactElement | ReactNode;
   auth?: boolean;
-  colorType?: 'white' | 'secondary' | 'main' | 'outline-main' | 'outline-error';
+  colorType?: TButtonColors;
   small?: boolean;
 }
 const Button: FC<IProps> = ({

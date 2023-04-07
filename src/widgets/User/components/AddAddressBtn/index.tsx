@@ -1,6 +1,6 @@
 import React, { FC, memo, useState } from 'react';
 import { ILocation, IUser, useUsers } from 'widgets/User';
-import { Button, Gap, Input, Modal, Title } from 'UI';
+import { Button, Gap, Input, Modal, TButtonColors, Title } from 'UI';
 import { useInput } from 'hooks';
 
 import s from './AddAddressBtn.module.scss';
@@ -10,7 +10,17 @@ const defaultNumProps = { type: 'number', maxLength: 4, required: true };
 const defaultProps = { maxLength: 35, required: true };
 const homeProps = { maxLength: 4, required: true };
 
-const AddAddressBtn: FC = () => {
+interface IProps {
+  colorTypeError?: TButtonColors;
+  colorType?: TButtonColors;
+  small?: boolean;
+}
+
+const AddAddressBtn: FC<IProps> = ({
+  colorType = 'outline-main',
+  colorTypeError = 'outline-error',
+  small = false,
+}) => {
   const { editUser, user } = useUsers();
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
@@ -76,14 +86,16 @@ const AddAddressBtn: FC = () => {
       </Modal>
       {user?.location && user?.location.length >= 3 ? (
         <Button
+          small={small}
           text='Максимум адресов'
-          colorType='outline-error'
+          colorType={colorTypeError}
           className={s.button}
         />
       ) : (
         <Button
+          small={small}
           text='Добавить адрес'
-          colorType='outline-main'
+          colorType={colorType}
           className={s.button}
           onClick={() => setIsVisible(true)}
         />

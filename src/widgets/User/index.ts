@@ -1,4 +1,5 @@
 import AddAddressBtn from './components/AddAddressBtn';
+import AddressList from './components/AddressList';
 import EditProfile from './components/EditProfile';
 import ProfileSider from './components/ProfileSider';
 import UserDelivery from './components/UserDelivery';
@@ -12,6 +13,7 @@ import userService from './service';
 import userReducer, { actions } from './state';
 
 export {
+  AddressList,
   EditProfile,
   ProfileSider,
   UserHistory,

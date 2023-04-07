@@ -6,7 +6,7 @@ import List from './List';
 import Title from './Title';
 import AudioToTextConverter from './AudioToTextConverter';
 import Input from './Input';
-import Button from './Button';
+import Button, { TButtonColors } from './Button';
 import Modal from './Modal';
 
 export * from './Select';
@@ -23,3 +23,5 @@ export {
   List,
   Button,
 };
+
+export type { TButtonColors };

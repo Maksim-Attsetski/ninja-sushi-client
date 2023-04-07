@@ -7,11 +7,15 @@ import { IUserGeoResponse, getUserGeo } from 'shared';
 interface IProps {
   activeAddress?: string;
   setActiveAddress?: Dispatch<SetStateAction<string>>;
+  isChangeable?: boolean;
+  isDeletable?: boolean;
 }
 
 const AddressList: FC<IProps> = ({
   activeAddress = '',
   setActiveAddress = () => {},
+  isChangeable = false,
+  isDeletable = true,
 }) => {
   const { editUser, user } = useUsers();
 
@@ -36,22 +40,24 @@ const AddressList: FC<IProps> = ({
           activeAddress.includes(geoInfo.sub);
 
         return (
-          <div key={inx} className={s.geo}>
+          <div key={inx} className={[s.geo, active ? s.active : ''].join(' ')}>
             <div className={s.geoInfo}>
               <div className={s.geoInfoTitle}>{geoInfo.main}</div>
               <div className={s.geoInfoText}> {geoInfo.sub}</div>
             </div>
             <div className={s.geoButtons}>
-              <div
-                onClick={() => onClickDeleteAddress(inx)}
-                className={s.geoButtonsDelete}
-              >
-                🗑️
-              </div>
-              {!!activeAddress.length && (
+              {isDeletable && (
+                <div
+                  onClick={() => onClickDeleteAddress(inx)}
+                  className={s.geoButtonsDelete}
+                >
+                  🗑️
+                </div>
+              )}
+              {isChangeable && (
                 <div
                   onClick={() => onClickCircle(geoInfo)}
-                  className={s.geoButtonsCircle + ' ' + active ? s.active : ''}
+                  className={s.geoButtonsCircle}
                 >
                   <span></span>
                 </div>
