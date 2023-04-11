@@ -4,9 +4,10 @@ import { Title, Gap } from 'UI';
 import { getUserGeo } from 'shared';
 import { useOrder } from 'widgets/Order';
 import { useUsers, AddressList, AddAddressBtn } from 'widgets/User';
+import { useActions } from 'hooks';
 
 import s from './OrderDelivery.module.scss';
-import { useActions } from 'hooks';
+
 type TDelivery = 'Доставка' | 'Самовывоз';
 const delivery: TDelivery[] = ['Доставка', 'Самовывоз'];
 
@@ -35,7 +36,7 @@ const OrderDelivery: FC = () => {
   };
 
   useEffect(() => {
-    if (order) {
+    if (order && order.delivery.address !== activeAddress) {
       const newDelivery = { ...order.delivery, address: activeAddress };
       action.setOrdersAC({ ...order, delivery: newDelivery });
     }

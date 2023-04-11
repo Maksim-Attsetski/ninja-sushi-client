@@ -21,6 +21,7 @@
 
 body {
   background: $grey;
+  font-family: 'Inter', sans-serif;
   transition: all linear 0.2s;
   &.lock {
     overflow: hidden;

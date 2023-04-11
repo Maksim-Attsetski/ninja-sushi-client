@@ -46,7 +46,7 @@ const ProductOrderBtn: FC<IProps> = ({ product }) => {
         onClick={() => onEditProductFromOrder(1)}
       />
     ),
-    [onEditProductFromOrder]
+    []
   );
 
   useEffect(() => {
