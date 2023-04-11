@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useEffect } from 'react';
 
 import GooglePayButton from '@google-pay/button-react';
 import { TGooglePayRes } from 'widgets/Order';

@@ -1,4 +1,4 @@
-import React, { FC, memo, useMemo } from 'react';
+import React, { FC, memo, useCallback, useMemo } from 'react';
 import { TGooglePayRes } from 'widgets/Order';
 import { useProduct } from 'widgets/Product';
 import useOrder from '../../hooks/useOrder';
@@ -17,11 +17,11 @@ const OrderSumma: FC = () => {
           return product ? (prev += cur.count * product?.price) : 0;
         }, 0)
       : 0;
-  }, [order]);
+  }, [order?.products]);
 
-  const onClickPay = async (res: TGooglePayRes) => {
+  const onClickPay = useCallback(async (res: TGooglePayRes) => {
     console.log(res);
-  };
+  }, []);
 
   return (
     <div>

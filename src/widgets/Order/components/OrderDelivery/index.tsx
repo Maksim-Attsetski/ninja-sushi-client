@@ -1,4 +1,11 @@
-import React, { FC, memo, useEffect, useMemo, useState } from 'react';
+import React, {
+  FC,
+  memo,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 
 import { Title, Gap } from 'UI';
 import { getUserGeo } from 'shared';
@@ -7,6 +14,11 @@ import { useUsers, AddressList, AddAddressBtn } from 'widgets/User';
 import { useActions } from 'hooks';
 
 import s from './OrderDelivery.module.scss';
+import {
+  RestaurantsList,
+  RestaurantsSelect,
+  useRestaurants,
+} from 'widgets/Restaurants';
 
 type TDelivery = 'Доставка' | 'Самовывоз';
 const delivery: TDelivery[] = ['Доставка', 'Самовывоз'];
@@ -27,13 +39,21 @@ const OrderDelivery: FC = () => {
   const [activeAddress, setActiveAddress] = useState<string>(defaultAddress);
   const [deliveryType, setDeliveryType] = useState<TDelivery>(delivery[0]);
 
-  const onChangeDeliveryType = (type: TDelivery) => {
-    if (order) {
-      const newDelivery = { ...order.delivery, delivery: type === 'Доставка' };
-      action.setOrdersAC({ ...order, delivery: newDelivery });
-      setDeliveryType(type);
-    }
-  };
+  const onChangeDeliveryType = useCallback(
+    (type: TDelivery) => {
+      if (order) {
+        const isDelivery = type === 'Доставка';
+        const newDelivery = {
+          ...order.delivery,
+          delivery: isDelivery,
+        };
+        action.setOrdersAC({ ...order, delivery: newDelivery });
+        setDeliveryType(type);
+        setActiveAddress(isDelivery ? defaultAddress : 'Выберите ресторан');
+      }
+    },
+    [order?.delivery]
+  );
 
   useEffect(() => {
     if (order && order.delivery.address !== activeAddress) {
@@ -64,14 +84,25 @@ const OrderDelivery: FC = () => {
           </div>
         </div>
         <Gap y={20} />
-        <AddressList
-          activeAddress={activeAddress}
-          setActiveAddress={setActiveAddress}
-          isChangeable
-          isDeletable={false}
-        />
-        <Gap y={7} />
-        <AddAddressBtn />
+        {deliveryType === 'Доставка' ? (
+          <>
+            <AddressList
+              activeAddress={activeAddress}
+              setActiveAddress={setActiveAddress}
+              isChangeable
+              isDeletable={false}
+            />
+            <Gap y={7} />
+            <AddAddressBtn />
+          </>
+        ) : (
+          <div>
+            <RestaurantsSelect
+              activeAddress={activeAddress}
+              setActiveAddress={setActiveAddress}
+            />
+          </div>
+        )}
       </div>
     )
   );
