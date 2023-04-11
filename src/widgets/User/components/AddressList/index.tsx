@@ -40,7 +40,11 @@ const AddressList: FC<IProps> = ({
           activeAddress.includes(geoInfo.sub);
 
         return (
-          <div key={inx} className={[s.geo, active ? s.active : ''].join(' ')}>
+          <div
+            key={inx}
+            onClick={() => isChangeable && onClickCircle(geoInfo)}
+            className={[s.geo, active ? s.active : ''].join(' ')}
+          >
             <div className={s.geoInfo}>
               <div className={s.geoInfoTitle}>{geoInfo.main}</div>
               <div className={s.geoInfoText}> {geoInfo.sub}</div>
@@ -55,10 +59,7 @@ const AddressList: FC<IProps> = ({
                 </div>
               )}
               {isChangeable && (
-                <div
-                  onClick={() => onClickCircle(geoInfo)}
-                  className={s.geoButtonsCircle}
-                >
+                <div className={s.geoButtonsCircle}>
                   <span></span>
                 </div>
               )}

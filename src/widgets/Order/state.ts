@@ -23,7 +23,9 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setOrdersAC: (state: IState, action: PayloadAction<TOrder>) => {
-      state.order = action.payload;
+      state.order = state.order
+        ? { ...state.order, ...action.payload }
+        : action.payload;
     },
     setHistoryAC: (state: IState, action: PayloadAction<IGetArray<IOrder>>) => {
       const { count, data, last } = action.payload;

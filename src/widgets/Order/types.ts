@@ -4,11 +4,17 @@ export type TPaymentsType = 'cash' | 'card' | 'card courier' | 'cash courier';
 export type TOrderStatus = 'not_paid' | 'paid';
 export type TOrder = IOrder | null;
 
+export interface IDelivery {
+  delivery: boolean;
+  time: number;
+  address: string;
+}
+
 export interface ICreateOrder<P = IProduct | string, U = string> {
   price: number;
   discount?: number;
   tips?: number; // чаевые
-  delivery: boolean;
+  delivery: IDelivery;
   deliveryTime: number;
   paymentsType: TPaymentsType;
   status: TOrderStatus;

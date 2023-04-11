@@ -16,7 +16,8 @@
   @apply flex justify-between items-center;
 
   &Tag {
-    @apply bg-[#f5f5f7] text-[#686870] py-1 px-2 rounded-md;
+    @apply text-[#686870] py-1 px-2 rounded-md;
+    background-color: $grey;
   }
 
   &Date {

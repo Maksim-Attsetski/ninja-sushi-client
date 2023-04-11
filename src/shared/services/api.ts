@@ -13,7 +13,7 @@ const $api = axios.create({
 
 $api.interceptors.request.use(async (config) => {
   const token = localStorage.getItem(tokenName);
-  console.log('old token', token);
+  Logger.log('old token', token);
 
   config.headers.Authorization = `Bearer ${token}`;
   config.headers.Accept = '*/*';
@@ -26,7 +26,7 @@ $api.interceptors.response.use(
   },
   async (error) => {
     const originalReq = error.config;
-    console.log('error.status', error.status);
+    Logger.log('error.status', error.status);
 
     if (error.status === 401 && originalReq && !originalReq._isRetry) {
       originalReq._isRetry = true;
