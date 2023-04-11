@@ -1,6 +1,8 @@
+import React, { FC, useRef, useState } from 'react';
+
 import { motion, Variants } from 'framer-motion';
 import { useClickOutside } from 'hooks';
-import React, { FC, useRef, useState } from 'react';
+
 import s from './Select.module.scss';
 
 export interface IOptions {
@@ -52,15 +54,6 @@ export const Select: FC<IProps> = ({ options, value, setValue }) => {
         onClick={() => setIsOpen((prev) => !prev)}
       >
         {activeItem}
-        <motion.div
-          variants={{ open: { rotate: 180 }, closed: { rotate: 0 } }}
-          transition={{ duration: 0.2 }}
-          style={{ originY: 0.55 }}
-        >
-          <svg width='15' height='15' viewBox='0 0 20 20'>
-            <path d='M0 7 L 20 7 L 10 16' />
-          </svg>
-        </motion.div>
       </motion.button>
       <motion.ul
         variants={{
@@ -86,6 +79,7 @@ export const Select: FC<IProps> = ({ options, value, setValue }) => {
             onClick={() => onClickItem(el)}
             variants={itemVariants}
             key={el.value}
+            whileHover={{ scale: 1.05 }}
           >
             {el.text}
           </motion.li>

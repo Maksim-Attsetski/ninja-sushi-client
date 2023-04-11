@@ -3,22 +3,20 @@
 .menu {
   @apply relative z-10;
   width: clamp(100px, 50vw, 300px);
-  filter: drop-shadow(1px 1px 1px #33333370);
-
+  // filter: drop-shadow(1px 1px 1px #33333370);
+  
   ul {
-    @apply absolute top-[110%] z-10 w-full left-0 flex bg-white flex-col gap-3 p-3;
+    @apply absolute top-[110%] z-10 w-full left-0 flex flex-col gap-3 p-3;
+    background-color: #fff;
   }
   
   li {
     @apply z-10 block cursor-pointer transition-all p-3;
-    &:hover {
-      @apply font-bold text-zinc-800;
-    }
   }
   
   button {
-    @apply border-none flex justify-between items-center mb-3 w-full cursor-pointer
-    bg-white text-lg px-5 py-3 rounded-xl;
+    @apply border-none flex justify-between items-center mb-3 w-full cursor-pointer text-lg px-5 py-3 rounded-xl;
+    background-color: $grey;
     -webkit-appearance: button;
   }
   
