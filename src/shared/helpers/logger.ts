@@ -1,11 +1,14 @@
+import { getError } from './getError';
+
 class Logger {
   log(msg: string, data?: any) {
     console.log('%c' + msg, 'color: green');
     console.log(data);
   }
 
-  error(msg: string) {
-    console.error('%c' + msg, 'color red');
+  error(msg: any) {
+    const error = getError(msg);
+    console.error('%c' + error?.message, 'color red');
   }
 }
 

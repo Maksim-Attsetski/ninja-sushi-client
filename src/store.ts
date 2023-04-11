@@ -7,6 +7,7 @@ import { authReducer } from 'widgets/Auth';
 import { productReducer } from 'widgets/Product';
 import { newsReducer } from 'widgets/News';
 import { messageReducer } from 'widgets/Message';
+import { restaurantReducer } from 'widgets/Restaurants';
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -16,6 +17,7 @@ const rootReducer = combineReducers({
   app: appReducer,
   news: newsReducer,
   msg: messageReducer,
+  restaurant: restaurantReducer,
 });
 
 export const store = configureStore({

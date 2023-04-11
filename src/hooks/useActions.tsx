@@ -8,6 +8,7 @@ import { actions as orderActions } from 'widgets/Order';
 import { actions as newsActions } from 'widgets/News';
 import { actions as appActions } from 'widgets/App';
 import { actions as msgActions } from 'widgets/Message';
+import { restaurantActions } from 'widgets/Restaurants';
 
 const useActions = () => {
   const dispatch = useTypedDispatch();
@@ -20,6 +21,7 @@ const useActions = () => {
     ...appActions,
     ...newsActions,
     ...orderActions,
+    ...restaurantActions,
   };
 
   const action = bindActionCreators(allActions, dispatch);

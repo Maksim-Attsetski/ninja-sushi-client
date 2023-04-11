@@ -13,16 +13,21 @@ import {
 } from 'widgets/User';
 import { useProduct } from 'widgets/Product';
 import { useNews } from 'widgets/News';
+import { useRestaurants } from 'widgets/Restaurants';
 
 const Navigation: FC = () => {
   const { isAuth, onRefresh } = useAuth();
   const { getProducts } = useProduct();
+  const { onGetRestourants } = useRestaurants();
   const { onGetNews } = useNews();
 
   const onGetAll = async () => {
+    const hours = new Date().getHours();
+
     await Promise.all([
       getProducts({ dependencies: true }),
       onGetNews({ sort: 'createdAt==desc', limit: 10 }),
+      onGetRestourants({ filter: `open_at<=${hours};close_at>=${hours}` }),
     ]);
     await onRefresh();
   };
