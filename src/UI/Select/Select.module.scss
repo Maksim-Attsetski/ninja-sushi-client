@@ -3,7 +3,6 @@
 .menu {
   @apply relative z-10;
   width: clamp(100px, 50vw, 300px);
-  // filter: drop-shadow(1px 1px 1px #33333370);
   
   ul {
     @apply absolute top-[110%] z-10 w-full left-0 flex flex-col gap-3 p-3;
