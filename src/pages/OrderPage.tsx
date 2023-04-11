@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 
-import { Gap, Title } from 'UI';
-import { OrderDelivery, OrderList, OrderSumma } from 'widgets/Order';
+import { Flex, Gap, Title } from 'UI';
+import { OrderDelivery, OrderList, OrderPay, OrderSumma } from 'widgets/Order';
 
 const OrderPage: FC = () => {
   return (
@@ -12,7 +12,10 @@ const OrderPage: FC = () => {
       <Gap y={10} />
       <OrderList />
       <Gap y={15} />
-      <OrderDelivery />
+      <Flex full justify='space-between'>
+        <OrderDelivery />
+        <OrderPay />
+      </Flex>
       <Gap y={10} />
       <OrderSumma />
     </div>

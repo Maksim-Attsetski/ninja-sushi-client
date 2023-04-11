@@ -8,10 +8,12 @@ import AudioToTextConverter from './AudioToTextConverter';
 import Input from './Input';
 import Button, { TButtonColors } from './Button';
 import Modal from './Modal';
+import Flex from './Flex';
 
 export * from './Select';
 
 export {
+  Flex,
   Modal,
   Input,
   AudioToTextConverter,

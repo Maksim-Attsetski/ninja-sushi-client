@@ -8,7 +8,7 @@
   background-color: $grey;
 
   &Item {
-    @apply cursor-pointer bg-transparent px-5 py-[6px] rounded-lg;
+    @apply text-xl cursor-pointer bg-transparent px-5 py-[6px] rounded-lg;
     transition: all linear 0.25s;
     &.active {
       background-color: $secondary;

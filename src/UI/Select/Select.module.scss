@@ -14,7 +14,7 @@
   }
   
   button {
-    @apply border-none flex justify-between items-center mb-3 w-full cursor-pointer text-lg px-5 py-3 rounded-xl;
+    @apply border-none flex justify-between items-center w-full cursor-pointer text-lg px-5 py-3 rounded-xl;
     background-color: $grey;
     -webkit-appearance: button;
   }

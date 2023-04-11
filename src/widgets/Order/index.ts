@@ -1,5 +1,6 @@
 import OrderDelivery from './components/OrderDelivery';
 import OrderList from './components/OrderList';
+import OrderPay from './components/OrderPay';
 import OrderSumma from './components/OrderSumma';
 import useOrder from './hooks/useOrder';
 import OrderService from './service';
@@ -10,6 +11,7 @@ export {
   OrderDelivery,
   OrderSumma,
   OrderList,
+  OrderPay,
   useOrder,
   OrderService,
   orderReducer,
